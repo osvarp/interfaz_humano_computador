@@ -1,13 +1,13 @@
-{/* import style from "./src/pages/login.module.css"
 
-Nota: todavia no logre que esto funcione
-*/}
+import UCommerceIcon from "/src/components/UCommerceIcon.jsx"
 
 function Login( props ) {
     return (
         <div>
-            <img src="./public/U-COMMERCE.jpg" alt = "U-Commerce icon" />
+            <UCommerceIcon/>
             <p> este es la pagina del login  </p>
+
+            <button>  </button> 
         </div>
     )
 }
