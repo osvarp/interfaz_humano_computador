@@ -1,0 +1,16 @@
+
+.registerDiv {
+    text-align: center;
+}
+
+.registerFormLabel {
+    color: red;
+}
+
+.registerFormInput {
+    width: 40%;
+}
+
+.registerCheckbox{ 
+    color: red;
+}
