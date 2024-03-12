@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -42,7 +42,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #A40033;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -65,4 +65,23 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+.fondoLogin{
+  text-align: center;
+
+}
+
+label {
+  color: #1a1a1a;
+}
+
+input{
+  background-color: #a1a1a1;
+  border: 0;
+  border-radius: 10px;
+  margin: 10px 20px 10px 20px;
+  width: auto;
+  height: 20px;
 }

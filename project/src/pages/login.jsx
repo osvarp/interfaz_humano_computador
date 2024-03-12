@@ -3,12 +3,23 @@ import UCommerceIcon from "/src/components/UCommerceIcon.jsx"
 
 function Login( props ) {
     return (
-        <div>
-            <UCommerceIcon/>
-            <p> este es la pagina del login  </p>
-
-            <button>  </button> 
-        </div>
+        <>
+        <UCommerceIcon/>
+        <section className="fondoLogin">
+            <label>
+                Email:
+                <input></input>
+            </label>
+            <br/>
+            <label>
+                Password:
+                <input type="password" ></input>
+            </label>
+            <br/>
+            <button>Log in</button>
+            
+        </section>
+        </>
     )
 }
 
