@@ -12,7 +12,7 @@ const productosDePrueba=[
       userName: "asterion",
       productName: "brownie",
       price: 200,
-      profileImage: "/public/profileImages/asterion.jpeg",
+      profileImage: "/public/profileImages/asterion.jpg",
       productImage: "/public/productImages/asterion_brownie.png",
       productDescription: "Rico brownie para pasar la tarde",
     }

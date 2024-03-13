@@ -1,18 +1,36 @@
 
 .productBox{
     background-color: beige;
-
+    width: 50%;
+    margin: 25%;
+    border: 2px solid blue;
 }
 
 .profileImage{
     background-color: brown;
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+    padding: 3px;
+    display: block;
+    margin-left: 10%;
+    
+}
+
+.profileImage:hover {
+    opacity: 0.9;
 }
 
 .productImage{
     background-color: brown;
-
+    max-width: 40%;
+    max-height: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .productDisplayText{
     color: blue;
+    text-align: center;
 }
