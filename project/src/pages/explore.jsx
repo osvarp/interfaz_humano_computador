@@ -5,7 +5,7 @@ import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 function Explore ( props ) {
     return (
         <>
-            { props.productsInSale.map( (product) => <DisplayProduct key={product.id} product={product} /> ) }            
+            { props.productsInSale.map( (product) => <DisplayProduct key={product.id} product={product.information} /> ) }            
             <UCommerceIcon />
         </>
     )
