@@ -22,7 +22,7 @@ function Register ( props ) {
 
     return (
         <>
-        <GoBackButton to="/InicioSesion" ></GoBackButton>
+        <GoBackButton to="/" ></GoBackButton>
         <UCommerceIcon/>
 
         <div className={styles.registerDiv} >

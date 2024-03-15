@@ -47,10 +47,6 @@ const productosDePrueba=[
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
-  },
-  {
-    path: "/InicioSesion",
     element: <Login/>
   },
   {

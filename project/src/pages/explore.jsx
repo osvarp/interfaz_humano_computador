@@ -7,7 +7,7 @@ import GoBackButton from "../components/goBackButton";
 function Explore ( props ) {
     return (
         <>
-            <GoBackButton to="/InicioSesion"></GoBackButton>
+            <GoBackButton to="/"></GoBackButton>
             <div>
                 { props.productsInSale.map( (product) => <DisplayProduct key={product.id} product={product.information} /> ) }            
             </div>

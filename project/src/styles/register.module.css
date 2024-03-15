@@ -6,12 +6,12 @@
 
 .registerFormLabel {
     display: block;
-    margin-left: 30%;
+    margin-left: 20%;
     color: black;
 }
 
 .registerFormInput {
-    width: 40%;
+    width: 30%;
 }
 
 .registerCheckbox{ 
