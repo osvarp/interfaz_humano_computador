@@ -8,7 +8,7 @@ function Login(props) {
     return (
         <>
             <UCommerceIcon />
-            <section className="bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+            <section className="-mt-10 bg-gray-100 flex flex-col items-center justify-center min-h-screen">
                 <label className="text-gray-700">
                     Email:
                     <input className="border border-gray-300 rounded-md px-2 py-1 mt-1 focus:outline-none focus:ring-2 focus:ring-blue-500" />
@@ -30,4 +30,4 @@ function Login(props) {
     );
 }
 
-export default Login;
+export default Login;   
