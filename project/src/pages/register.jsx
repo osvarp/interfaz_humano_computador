@@ -2,8 +2,12 @@
 import { useState } from 'react';
 import styles from "/src/styles/register.module.css";
 import GoBackButton from '../components/goBackButton';
+import {useNavigate} from "react-router-dom"
+import UCommerceIcon from "/src/components/UCommerceIcon.jsx"
+
 
 function Register ( props ) {
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
@@ -13,15 +17,17 @@ function Register ( props ) {
     };
 
     const handleSubmit = (event) => {
-        
+        navigate("/Explorar");
     };
 
     return (
         <>
         <GoBackButton to="/InicioSesion" ></GoBackButton>
+        <UCommerceIcon/>
+
         <div className={styles.registerDiv} >
             <form onSubmit={handleSubmit} className={styles.registerDiv} >
-                <label className={styles.registerFormLabel} > Nombre: 
+                <label className={styles.registerFormLabel} >
                     <input 
                     type="text" 
                     name="name" 
@@ -29,9 +35,10 @@ function Register ( props ) {
                     onChange={handleChange} 
                     className = {styles.registerFormInput}
                     />
+                    Nombre
                 </label>
                 <br></br>
-                <label className={styles.registerFormLabel} > Apellido: 
+                <label className={styles.registerFormLabel} >
                     <input 
                     type="text" 
                     name="surname" 
@@ -39,9 +46,10 @@ function Register ( props ) {
                     onChange={handleChange} 
                     className = {styles.registerFormInput}
                     />
+                    Apellido
                 </label>
                 <br></br>
-                <label className={styles.registerFormLabel} > Correo electronico: 
+                <label className={styles.registerFormLabel} >
                     <input 
                     type="email" 
                     name="email" 
@@ -49,9 +57,10 @@ function Register ( props ) {
                     onChange={handleChange}
                     className = {styles.registerFormInput}
                     />
+                    Correo electronico
                 </label>
                 <br></br>
-                <label className={styles.registerFormLabel} > Usuario: 
+                <label className={styles.registerFormLabel} > 
                     <input 
                     type="text" 
                     name="username" 
@@ -59,9 +68,10 @@ function Register ( props ) {
                     onChange={handleChange}
                     className = {styles.registerFormInput}
                     />
+                    Usuario
                 </label>
                 <br></br>
-                <label className={styles.registerFormLabel} > Contraseña: 
+                <label className={styles.registerFormLabel} >
                     <input 
                     type="password" 
                     name="password" 
@@ -69,9 +79,10 @@ function Register ( props ) {
                     onChange={handleChange}
                     className = {styles.registerFormInput}
                     />
+                    Contraseña
                 </label>
                 <br></br>
-                <label className = {styles.registerFormLabel} > Cuenta para ventas:  
+                <label className = {styles.registerFormLabel} >  
                     <input 
                     type = "checkbox" 
                     name = "seller"
@@ -79,9 +90,10 @@ function Register ( props ) {
                     onChange={handleChange}
                     className = {styles.registerCheckbox}
                     />
+                    Cuenta para ventas
                 </label>
                 <br></br>
-                <input type="submit" value="Registrarse"  />
+                <input type="submit" value="Registrarse" className={styles.registerSubmitButton} />
             </form>
         </div>
         </>

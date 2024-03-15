@@ -1,10 +1,13 @@
 
 .registerDiv {
-    text-align: center;
+    margin:auto;
+    width: 80%;
 }
 
 .registerFormLabel {
-    color: red;
+    display: block;
+    margin-left: 30%;
+    color: black;
 }
 
 .registerFormInput {
@@ -12,5 +15,15 @@
 }
 
 .registerCheckbox{ 
-    color: red;
+    color: black;
+}
+
+.registerSubmitButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.registerSubmitButton:hover{
+    opacity: 0.9;
 }

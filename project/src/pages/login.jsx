@@ -21,9 +21,9 @@ function Login( props ) {
             </label>
             <br/>
             <button onClick={handleOnClick}>Log in</button>
-            
+            <br></br>
+            <Link to="/Registro"> <button> Register </button> </Link>            
         </section>
-        <Link to="/Registro"> <button> Register </button> </Link>
         </>
     )
 }
