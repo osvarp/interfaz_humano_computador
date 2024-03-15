@@ -22,6 +22,7 @@ function Login( props ) {
             <br/>
             <button onClick={handleOnClick}>Log in</button>
             <br></br>
+            <br></br>
             <Link to="/Registro"> <button> Register </button> </Link>            
         </section>
         </>

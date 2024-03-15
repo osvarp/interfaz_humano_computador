@@ -4,6 +4,7 @@ import Root from "./pages/root.jsx";
 import Login from "./pages/login.jsx"
 import Register from "./pages/register.jsx";
 import Explore from "./pages/explore.jsx";
+import EditProduct from "./pages/editproduct.jsx";
 
 const productosDePrueba=[ 
   {
@@ -41,6 +42,8 @@ const productosDePrueba=[
   }
 ];
 
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -57,8 +60,15 @@ const router = createBrowserRouter([
   {
     path: "/Explorar",
     element: <Explore productsInSale={productosDePrueba} />
+  },
+  {
+    path: "/EditProduct",
+    element: <EditProduct producto={productosDePrueba[1]} />
   }
+
 ]);
+
+
 
 function App() {
 
