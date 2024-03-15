@@ -1,8 +1,11 @@
 
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+
 
 function Login( props ) {
+    const navigate = useNavigate();
+    const handleOnClick = () => { navigate( "/Explorar" ); } 
     return (
         <>
         <UCommerceIcon/>
@@ -17,7 +20,7 @@ function Login( props ) {
                 <input type="password" ></input>
             </label>
             <br/>
-            <button>Log in</button>
+            <button onClick={handleOnClick}>Log in</button>
             
         </section>
         <Link to="/Registro"> <button> Register </button> </Link>

@@ -8,7 +8,9 @@ function Explore ( props ) {
     return (
         <>
             <GoBackButton to="/InicioSesion"></GoBackButton>
-            { props.productsInSale.map( (product) => <DisplayProduct key={product.id} product={product.information} /> ) }            
+            <div>
+                { props.productsInSale.map( (product) => <DisplayProduct key={product.id} product={product.information} /> ) }            
+            </div>
             <UCommerceIcon />
         </>
     )
