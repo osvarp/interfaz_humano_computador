@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import styles from "/src/styles/register.module.css";
+import GoBackButton from '../components/goBackButton';
 
 function Register ( props ) {
     const [inputs, setInputs] = useState({});
@@ -16,6 +17,8 @@ function Register ( props ) {
     };
 
     return (
+        <>
+        <GoBackButton to="/InicioSesion" ></GoBackButton>
         <div className={styles.registerDiv} >
             <form onSubmit={handleSubmit} className={styles.registerDiv} >
                 <label className={styles.registerFormLabel} > Nombre: 
@@ -81,6 +84,7 @@ function Register ( props ) {
                 <input type="submit" value="Registrarse"  />
             </form>
         </div>
+        </>
     )
 }
 

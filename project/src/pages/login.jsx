@@ -1,5 +1,6 @@
 
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx"
+import {Link} from "react-router-dom"
 
 function Login( props ) {
     return (
@@ -19,6 +20,7 @@ function Login( props ) {
             <button>Log in</button>
             
         </section>
+        <Link to="/Registro"> <button> Register </button> </Link>
         </>
     )
 }

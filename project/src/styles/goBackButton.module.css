@@ -1,0 +1,19 @@
+
+.goBackLink{
+    color: red;
+}
+
+.goBackImage{
+    background-color: whitesmoke;
+    max-width: 5%;
+    max-height: 5%;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-radius: 50%;
+    padding: 2px;
+}
+
+.goBackImage:hover {
+    background-color: aquamarine;
+    opacity: 0.9;
+}
