@@ -4,6 +4,8 @@ import Login from "./pages/login.jsx"
 import Register from "./pages/register.jsx";
 import Explore from "./pages/explore.jsx";
 import EditProduct from "./pages/editproduct.jsx";
+import { Provider } from 'react-redux';
+import { store } from './slice/index.jsx';
 
 const productosDePrueba=[ 
   {
@@ -69,7 +71,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router}/>
+      <Provider store={store} >
+        <RouterProvider router={router}/>
+      </Provider>
     </>
   )
 }
