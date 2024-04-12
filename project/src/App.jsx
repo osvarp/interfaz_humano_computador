@@ -6,6 +6,7 @@ import Explore from "./pages/explore.jsx";
 import EditProduct from "./pages/editproduct.jsx";
 import { Provider } from 'react-redux';
 import { store } from './slice/index.jsx';
+import ErrorPage from "./pages/errorPage.jsx";
 
 const productosDePrueba=[ 
   {
@@ -48,7 +49,8 @@ const productosDePrueba=[
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Login/>
+    element: <Login/>,
+    errorElement: <ErrorPage/>,
   },
   {
     path: "/Registro",
