@@ -34,7 +34,7 @@ function Register(props) {
                     </div>
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-gray-700">Correo electrónico</label>
-                        <input type="text" name="eamil" id="email" value={inputs.email} onChange={handleChange} className="form-input" />
+                        <input type="text" name="email" id="email" value={inputs.email} onChange={handleChange} className="form-input" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-gray-700">Usuario</label>
