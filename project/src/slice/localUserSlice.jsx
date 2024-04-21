@@ -8,14 +8,9 @@ user ->
 
 import { createSlice } from '@reduxjs/toolkit';
 
-const neutralProfileImage = "";
 
 const initialState = {
     userName : "",
-    profileImage : neutralProfileImage,
-    description : "",
-    sellAccount : false,
-    phoneNumber : "",
 };
 
 export const localUserSlice = createSlice({
@@ -24,17 +19,9 @@ export const localUserSlice = createSlice({
     reducers : {
         loginUser: ( state, user ) => {
             state.userName = user.userName;
-            state.profileImage = user.profileImage;
-            state.description = user.description;
-            state.sellAccount = user.sellAccount;
-            state.phoneNumber = user.phoneNumber;
         },
         logoutUser: ( state ) => {
             state.userName = "";
-            state.profileImage = neutralProfileImage;
-            state.description = "";
-            state.sellAccount = false;
-            state.phoneNumber = "";
         },
     },
 });

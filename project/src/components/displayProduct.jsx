@@ -1,10 +1,13 @@
 import styles from '/src/styles/productDisplay.module.css';
+import { useSelector } from "react-redux";
 
 function DisplayProduct( { product } ) {
+    const sellerUser = useSelector( (state) => state.allUsers[product.userName] );
+
     return (
         <div className={styles.productBox} >
             <div className = {styles.imageFlexBox} >
-                <img src={product.profileImage} className={styles.profileImage} />
+                <img src={sellerUser.profileImage} className={styles.profileImage} />
                 <h4 className={styles.productDisplayText}> {product.userName} </h4>
             </div>
 
