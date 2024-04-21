@@ -19,7 +19,9 @@ function Explore ( props ) {
                     { Object.keys(productsInSale).map( (product) => <DisplayProduct key={productsInSale[product].id} product={productsInSale[product]}  /> ) }
                 </div>
             </div>
-           
+            <br></br>
+            <br></br>         
+
             <UCommerceIcon />
         </>
     )

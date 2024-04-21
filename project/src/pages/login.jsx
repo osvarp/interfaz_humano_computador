@@ -1,7 +1,7 @@
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import styles from "/src/styles/generalStyles.module.css";
 
 function Login(props) {
     const navigate = useNavigate();
@@ -15,7 +15,7 @@ function Login(props) {
     }
     
     return (
-        <>
+        <div className={styles.cont}>
             <UCommerceIcon />
             <div className="-mt-10  flex flex-col items-center justify-center ">
                 <input name = "email"
@@ -48,7 +48,7 @@ function Login(props) {
                     >Register</button>
                 </Link>
             </div>
-        </>
+        </div>
     );
 }
 
