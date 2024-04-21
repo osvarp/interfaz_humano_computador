@@ -17,7 +17,7 @@ function Login(props) {
     return (
         <>
             <UCommerceIcon />
-            <section className="-mt-10 bg-gray-100 flex flex-col items-center justify-center min-h-screen">
+            <div className="-mt-10  flex flex-col items-center justify-center ">
                 <input name = "email"
                     placeholder="email"
                     className="border border-gray-300 rounded-full w-64 px-2 py-2 mt-1
@@ -47,7 +47,7 @@ function Login(props) {
                     shadow-md hover:bg-fuchsia-950 focus:outline-none focus:ring-2 focus:ring-green-500"
                     >Register</button>
                 </Link>
-            </section>
+            </div>
         </>
     );
 }

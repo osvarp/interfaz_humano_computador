@@ -1,7 +1,9 @@
+import styles from '/src/styles/productDisplay.module.css';
 
 import DisplayProduct from "/src/components/displayProduct.jsx";
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import GoBackButton from "../components/goBackButton";
+
 
 import { useSelector } from "react-redux";
 
@@ -11,9 +13,13 @@ function Explore ( props ) {
     return (
         <>
             <GoBackButton to="/"></GoBackButton>
-            <div>
-                { Object.keys(productsInSale).map( (product) => <DisplayProduct key={productsInSale[product].id} product={productsInSale[product]} /> ) }
+
+            <div className={styles.container}>
+                <div className={styles.centeredDiv}>
+                    { Object.keys(productsInSale).map( (product) => <DisplayProduct key={productsInSale[product].id} product={productsInSale[product]}  /> ) }
+                </div>
             </div>
+           
             <UCommerceIcon />
         </>
     )

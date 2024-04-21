@@ -5,6 +5,7 @@ function DisplayProduct( { product } ) {
     const sellerUser = useSelector( (state) => state.allUsers[product.userName] );
 
     return (
+        /*
         <div className={styles.productBox} >
             <div className = {styles.imageFlexBox} >
                 <img src={sellerUser.profileImage} className={styles.profileImage} />
@@ -20,7 +21,20 @@ function DisplayProduct( { product } ) {
             </div>
 
             <p className={styles.productDisplayText}> { product.productDescription } </p>
-        </div>
+        </div>*/
+        
+<div className={styles.card}>
+  <img src={product.productImage}></img>
+  <div className={styles.card__content}>
+    <p className={styles.card__title}>{product.productName}</p>
+    <p className={styles.card__price}>Price: ${product.price}</p>
+    <p className={styles.card__description}>{ product.productDescription }</p>
+
+
+  </div>
+
+</div>
+
     )
 }
 
