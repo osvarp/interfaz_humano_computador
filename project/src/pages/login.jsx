@@ -37,14 +37,14 @@ function Login(props) {
                 <br />
                 <button 
                 className="bg-rose-700 text-white w-64 px-2 py-2 mt-4 rounded-full shadow-md 
-                hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" 
+                hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-blue-500 text-center hover:scale-105" 
                 onClick={handleOnClick}>Log in</button>
                 <br />
                 <br />
                 <Link to="/Registro">
                     <button 
                     className="bg-violet-950 text-white w-64 px-4 py-2 rounded-full my-1 
-                    shadow-md hover:bg-fuchsia-950 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    shadow-md hover:bg-fuchsia-950 focus:outline-none focus:ring-2 focus:ring-green-500 hover:scale-105"
                     >Register</button>
                 </Link>
             </div>

@@ -50,7 +50,10 @@ function Register(props) {
                             Cuenta para ventas
                         </label>
                     </div>
-                    <input type="submit" value="Registrarse" className="bg-blue-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                    <input type="submit" value="Registrarse" 
+                    className="bg-violet-950 text-white px-4 py-2 rounded-md shadow-md 
+                    hover:bg-blue-600 hover:scale-105 hover:cursor-pointer hover:bg-fuchsia-950
+                    focus:outline-none focus:ring-2 focus:ring-blue-500" />
                 </form>
             </div>
         </>
