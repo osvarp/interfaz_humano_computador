@@ -58,7 +58,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Explorar",
-    element: <Explore productsInSale={productosDePrueba} />
+    element: <Explore/>
   },
   {
     path: "/EditProduct",
