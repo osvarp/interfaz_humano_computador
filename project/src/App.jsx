@@ -8,6 +8,7 @@ import { store } from './slice/index.jsx';
 import ErrorPage from "./pages/errorPage.jsx";
 import MyProducts from "./pages/myProducts.jsx";
 import CreateProduct from "./pages/createProduct.jsx";
+import MenuAndFilters from "./pages/menuAndFilters.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
     path: "/CreateProduct",
     element: <CreateProduct />
   },
+  {
+    path:"/Menu",
+    element: <MenuAndFilters />
+  }
 ]);
 
 

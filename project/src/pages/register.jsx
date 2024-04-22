@@ -20,13 +20,12 @@ function Register(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log( allUsers );
         if ( inputs.username in allUsers ) {
             alert( "El nombre de usuario '" + inputs.username + "' ya ha sido seleccionado." );
         } else if ( inputs.username && inputs.phoneNumber && inputs.password ) {
             dispatch( addUser( inputs ) );
             dispatch( loginUser( inputs.username ) );
-            navigate("/Explorar");
+            navigate("/Menu");
         } else {
             alert("Por favor, complete todos los campos obligatorios.");
         }

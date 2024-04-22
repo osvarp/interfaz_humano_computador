@@ -10,7 +10,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-    userName : "asterion",
+    username : "asterion",
 };
 
 export const localUserSlice = createSlice({
@@ -18,10 +18,10 @@ export const localUserSlice = createSlice({
     initialState,
     reducers : {
         loginUser: ( state, action ) => {
-            state.userName = action.payload;
+            state.username = action.payload;
         },
         logoutUser: ( state ) => {
-            state.userName = "";
+            state.username = "";
         },
     },
 });

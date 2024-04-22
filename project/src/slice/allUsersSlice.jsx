@@ -44,7 +44,7 @@ export const allUsersSlice = createSlice({
     initialState,
     reducers:{
         addUser : ( state, action ) => {
-            state[action.payload.username] = {...action.payload,nextId:0, description:"", profileImage:"defaultUserPicture.png"};
+            state[action.payload.username] = {...action.payload,nextId:0, description:"", profileImage:"defaultUserPicture.png", associatedProducts:[]};
         },
         addAssociatedProduct : ( state, action ) => {
             state[action.payload.user].associatedProducts.push( action.payload.product );

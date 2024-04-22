@@ -10,7 +10,7 @@ function MyProducts( props ) {
     const myProductsId = useSelector( (state) => state.allUsers[myUser].associatedProducts );
     return(
     <>
-    <GoBackButton to="/" />
+    <GoBackButton to="/Menu" />
     <h1 className=" 
     text-7xl text-red-500 font-semibold text-center my-10
     " > My Products </h1>
