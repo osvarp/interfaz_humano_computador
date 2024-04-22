@@ -2,7 +2,12 @@ import styles from '/src/styles/productDisplay.module.css';
 import { useSelector } from "react-redux";
 
 function DisplayProduct( { product } ) {
-    const sellerUser = useSelector( (state) => state.allUsers[product.userName] );
+    const sellerUser = useSelector( (state) => state.allUsers[product.username] );
+
+    // para prevenir que se renderizen productos que no estan a la venta
+    if ( !product.inStock || !sellerUser.seller ) {
+        return null;
+    }
 
     return (
 

@@ -4,7 +4,11 @@ function GoBackButton( props ) {
     const navigate = useNavigate();
 
     const handleClick = (event) => {
-        navigate(-1);
+        if ( !props.to ) {
+            navigate(-1);
+        } else {
+            navigate( props.to )
+        }
     }
 
     return (

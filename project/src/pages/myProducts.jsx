@@ -10,7 +10,7 @@ function MyProducts( props ) {
     const myProductsId = useSelector( (state) => state.allUsers[myUser].associatedProducts );
     return(
     <>
-    <GoBackButton />
+    <GoBackButton to ="/Menu" />
     <ProfileImage />
 
     <h1 className=" 

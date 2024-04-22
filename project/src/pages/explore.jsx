@@ -14,7 +14,7 @@ function Explore ( props ) {
     return (
         <>
             <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt = "U-Commerce icon"></img>
-            <GoBackButton />
+            <GoBackButton to ="/Menu"/>
             <ProfileImage />
             <br></br>
             {/* Buscador */}

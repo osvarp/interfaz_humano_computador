@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     "asterion_0":{
         id: "asterion_0",
-        userName: "asterion",
+        username: "asterion",
         productName: "brownie",
         price: 200,
         profileImage: "/public/profileImages/asterion.jpg",
@@ -13,7 +13,7 @@ const initialState = {
     }, 
     "jeronimo_0":{
         id:"jeronimo_0",
-        userName: "jeronimo",
+        username: "jeronimo",
         productName: "durazno",
         price: 8000,
         profileImage: "/public/profileImages/jeronimo.jpg",
@@ -23,7 +23,7 @@ const initialState = {
     },
     "doña_florinda_0":{
         id: "doña_florinda_0",
-        userName: "doña_florinda",
+        username: "doña_florinda",
         productName: "pato de hule",
         price: 4000,
         profileImage: "/public/profileImages/dona_florinda.jpg",
