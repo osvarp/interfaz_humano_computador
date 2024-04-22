@@ -9,6 +9,7 @@ import ErrorPage from "./pages/errorPage.jsx";
 import MyProducts from "./pages/myProducts.jsx";
 import CreateProduct from "./pages/createProduct.jsx";
 import MenuAndFilters from "./pages/menuAndFilters.jsx";
+import EditProfile from "./pages/editProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
   {
     path:"/Menu",
     element: <MenuAndFilters />
+  },
+  {
+    path: "/EditProfile",
+    element: <EditProfile />
   }
 ]);
 

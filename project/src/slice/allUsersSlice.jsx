@@ -56,11 +56,13 @@ export const allUsersSlice = createSlice({
                 state[action.payload.user].associatedProducts.splice( index, 1 );
             }
         },
-        changePhoneNumber : ( state, action ) => {
-            state[action.payload.id].phoneNumber = action.payload.value;
+        modifyUserData : ( state, action ) => {
+            Object.keys( action.payload ).map( (key) => {
+                state[action.payload.username][key] = action.payload[key];
+            } );
         }
     },
 });
 
-export const { addUser, addAssociatedProduct, removeAssociatedProduct, changePhoneNumber } = allUsersSlice.actions;
+export const { addUser, addAssociatedProduct, removeAssociatedProduct, modifyUserData } = allUsersSlice.actions;
 export default allUsersSlice.reducer;

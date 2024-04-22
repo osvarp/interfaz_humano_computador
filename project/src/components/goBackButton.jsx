@@ -1,12 +1,19 @@
-import {Link} from "react-router-dom";
-import styles from "/src/styles/goBackButton.module.css";
+import {Link, useNavigate} from "react-router-dom";
 
 function GoBackButton( props ) {
+    const navigate = useNavigate();
+
+    const handleClick = (event) => {
+        navigate(-1);
+    }
+
     return (
-        <Link to={props.to} className={styles.goBackLink} >
-            <img src="/public/goBackImage.png" className={styles.goBackImage} />
-        </Link> 
-    )
+        <button onClick={handleClick} >
+            <img src="/public/goBackImage.png" className="
+            bg-inherit ml-3 mt-3 w-24 rounded-full float-left hover:scale-105 hover:opacity-95
+            " />
+        </button>
+    );
 }
 
 export default GoBackButton;

@@ -40,7 +40,7 @@ function CreateProduct(props) {
 
     return (
         <>
-            <GoBackButton to="/MyProducts" />
+            <GoBackButton />
             <UCommerceIcon />
 
             <div className="mx-auto max-w-md mt-8 p-4 bg-white rounded shadow-md">

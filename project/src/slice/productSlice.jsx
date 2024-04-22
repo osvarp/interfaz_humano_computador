@@ -43,8 +43,11 @@ export const productSlice = createSlice({
         removeProduct : ( state, action ) => {
             delete state[action.payload];
         },
+        changeStockState : ( state, action ) => {
+            state[action.payload.product].inStock = action.payload.stock;
+        }
     },
 });
 
-export const { addProduct, removeProduct } = productSlice.actions;
+export const { addProduct, removeProduct, changeStockState } = productSlice.actions;
 export default productSlice.reducer;

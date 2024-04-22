@@ -12,7 +12,7 @@ function Explore ( props ) {
 
     return (
         <>
-            <GoBackButton to="/Menu"></GoBackButton>
+            <GoBackButton />
 
             <div className={styles.container}>
                 <div className={styles.centeredDiv}>

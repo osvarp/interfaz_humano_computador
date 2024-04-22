@@ -18,6 +18,10 @@ function MenuAndFilters( props ) {
         navigate("/MyProducts")
     }
 
+    const handleProfile = (event) => {
+        navigate("/EditProfile");
+    }
+
     return(
         <>
         <div>
@@ -31,6 +35,10 @@ function MenuAndFilters( props ) {
         <br></br>
         <div>
             <button onClick={handleMyProducts}> myProducts </button>
+        </div>
+        <br></br>
+        <div>
+            <button onClick={handleProfile}> profileEdit </button>
         </div>
         </>
     );
