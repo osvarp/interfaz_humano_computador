@@ -20,7 +20,6 @@ function Explore ( props ) {
                 </div>
             </div>
             <br></br>
-            <br></br>         
 
             <UCommerceIcon />
         </>
