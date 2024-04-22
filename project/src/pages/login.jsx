@@ -3,11 +3,15 @@ import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { FiCheckCircle } from "react-icons/fi";
 import styles from "/src/styles/generalStyles.module.css";
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser } from '../slice/localUserSlice';
 
 function Login(props) {
     const navigate = useNavigate();
-    const [input, setInputs] = useState({ email: "", password: "" });
+    const [input, setInputs] = useState({ username: "", password: "" });
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const allUsers = useSelector( (state) => state.allUsers );
+    const dispatch = useDispatch();
 
     const handleEvent = (event) => {
         const { name, value } = event.target;
@@ -15,9 +19,11 @@ function Login(props) {
     };
 
     const handleOnClick = () => {
-        if (input.email && input.password) {
-            // Aquí iría tu lógica de autenticación
-            // Simulación de inicio de sesión exitoso
+        if ( !(input.username in allUsers) ) {
+            alert( "el usuario '" + input.username + "' no existe." );
+        } else if (input.username && input.password) {
+            dispatch( loginUser( input.username ) )
+            
             setShowConfirmation(true);
             setTimeout(() => {
                 navigate("/Explorar");
@@ -32,11 +38,11 @@ function Login(props) {
             <UCommerceIcon />
             <div className="-mt-10  flex flex-col items-center justify-center ">
                 <input
-                    name="email"
-                    placeholder="email"
+                    name="username"
+                    placeholder="username"
                     className="border border-gray-300 rounded-full w-64 px-2 py-2 mt-1
                     focus:outline-none focus:ring-2 focus:ring-blue-500 text-center bg-stone-200"
-                    value={input.email}
+                    value={input.username}
                     onChange={handleEvent}
                 />
                 <br />
