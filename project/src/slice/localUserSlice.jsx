@@ -10,15 +10,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-    userName : "",
+    userName : "asterion",
 };
 
 export const localUserSlice = createSlice({
     name : "localUser",
     initialState,
     reducers : {
-        loginUser: ( state, user ) => {
-            state.userName = user.userName;
+        loginUser: ( state, action ) => {
+            state.userName = action.payload;
         },
         logoutUser: ( state ) => {
             state.userName = "";
