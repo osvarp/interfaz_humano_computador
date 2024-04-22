@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../slice/localUserSlice";
+import ProfileImage from "../components/profileImage";
 
 function MenuAndFilters( props ) {
     const navigate = useNavigate();
@@ -40,6 +41,7 @@ function MenuAndFilters( props ) {
         <div>
             <button onClick={handleProfile}> profileEdit </button>
         </div>
+        <ProfileImage />
         </>
     );
 }

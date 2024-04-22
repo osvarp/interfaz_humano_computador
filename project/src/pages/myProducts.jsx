@@ -1,8 +1,8 @@
 import GoBackButton from "../components/goBackButton";
+import ProfileImage from "../components/profileImage";
 import VisualizeMyProduct from "../components/visualizeMyProduct";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 
 function MyProducts( props ) {
     const allProducts = useSelector( (state) => state.product );
@@ -11,6 +11,7 @@ function MyProducts( props ) {
     return(
     <>
     <GoBackButton />
+    <ProfileImage />
 
     <h1 className=" 
     text-7xl text-red-500 font-semibold text-center my-10

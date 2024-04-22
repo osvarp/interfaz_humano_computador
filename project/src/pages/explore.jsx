@@ -6,6 +6,7 @@ import GoBackButton from "../components/goBackButton";
 
 
 import { useSelector } from "react-redux";
+import ProfileImage from '../components/profileImage';
 
 function Explore ( props ) {
     const productsInSale = useSelector( (state) => state.product ) ;
@@ -13,7 +14,8 @@ function Explore ( props ) {
     return (
         <>
             <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt = "U-Commerce icon"></img>
-            {/*<GoBackButton />*/}
+            <GoBackButton />
+            <ProfileImage />
             <br></br>
             {/* Buscador */}
             <div className={styles.group}>
