@@ -3,48 +3,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/login.jsx"
 import Register from "./pages/register.jsx";
 import Explore from "./pages/explore.jsx";
-import EditProduct from "./pages/editproduct.jsx";
 import { Provider } from 'react-redux';
 import { store } from './slice/index.jsx';
 import ErrorPage from "./pages/errorPage.jsx";
-
-const productosDePrueba=[ 
-  {
-    id: 0,
-    information: {
-      userName: "asterion",
-      productName: "brownie",
-      price: 200,
-      profileImage: "/public/profileImages/asterion.jpg",
-      productImage: "/public/productImages/asterion_brownie.png",
-      productDescription: "Rico brownie para pasar la tarde",
-    }
-  }, 
-  {
-    id:1,
-    information: {
-      userName: "jeronimo",
-      productName: "durazno",
-      price: 8000,
-      profileImage: "/public/profileImages/jeronimo.jpg",
-      productImage: "/public/productImages/jeronimo_durazno.png",
-      productDescription: "Un durazno. Esta bueno.",
-    }
-  },
-  {
-    id: 2,
-    information: {
-      userName: "doña_florinda",
-      productName: "pato de hule",
-      price: 4000,
-      profileImage: "/public/profileImages/dona_florinda.jpg",
-      productImage: "/public/productImages/dona_florinda_patoDeHule.jpeg",
-      productDescription: "Debugea como los dioses usando la renombrada técnica del ‘rubber duck’.",
-    }
-  }
-];
-
-
+import MyProducts from "./pages/myProducts.jsx";
+import CreateProduct from "./pages/createProduct.jsx";
+import MenuAndFilters from "./pages/menuAndFilters.jsx";
 
 const router = createBrowserRouter([
   {
@@ -61,10 +25,17 @@ const router = createBrowserRouter([
     element: <Explore/>
   },
   {
-    path: "/EditProduct",
-    element: <EditProduct producto={productosDePrueba[1]} />
+    path : "/MyProducts",
+    element: <MyProducts />
+  },
+  {
+    path: "/CreateProduct",
+    element: <CreateProduct />
+  },
+  {
+    path:"/Menu",
+    element: <MenuAndFilters />
   }
-
 ]);
 
 
