@@ -12,7 +12,7 @@ function CreateProduct(props) {
     const [inputs, setInputs] = useState({productName:"",price:"",productDescription:"", productImage:"noProductImage.jpg",inStock:false});
     const dispatch = useDispatch();
     
-    const myUser = useSelector( (state) => state.localUser.userName );
+    const myUser = useSelector( (state) => state.localUser.username );
     const nextId = myUser + "_" + useSelector( (state) => state.allUsers[myUser].nextId );
 
     const handleChange = (event) => {

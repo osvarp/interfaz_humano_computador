@@ -3,9 +3,15 @@ import { useNavigate } from "react-router-dom";
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import GoBackButton from '../components/goBackButton';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { addUser } from '../slice/allUsersSlice';
+import { loginUser } from '../slice/localUserSlice';
+
 function Register(props) {
     const navigate = useNavigate();
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({username:"",phoneNumber:"",password:"",name:"",surname:"",seller:false});
+    const dispatch = useDispatch();
+    const allUsers = useSelector( (state) => state.allUsers );
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -14,13 +20,22 @@ function Register(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        navigate("/Explorar");
+        console.log( allUsers );
+        if ( inputs.username in allUsers ) {
+            alert( "El nombre de usuario '" + inputs.username + "' ya ha sido seleccionado." );
+        } else if ( inputs.username && inputs.phoneNumber && inputs.password ) {
+            dispatch( addUser( inputs ) );
+            dispatch( loginUser( inputs.username ) );
+            navigate("/Explorar");
+        } else {
+            alert("Por favor, complete todos los campos obligatorios.");
+        }
     };
 
     return (
         <>
-            <GoBackButton to="/" />
             <UCommerceIcon />
+            <GoBackButton to="/" />
 
             <div className="mx-auto max-w-md mt-8 p-4 bg-white rounded shadow-md">
                 <form onSubmit={handleSubmit}>
@@ -35,6 +50,10 @@ function Register(props) {
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-gray-700">Correo electrónico</label>
                         <input type="text" name="email" id="email" value={inputs.email} onChange={handleChange} className="form-input" />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="phoneNumber" className="block text-gray-700">Telefono</label>
+                        <input type="text" name="phoneNumber" id="phoneNumber" value={inputs.phoneNumber} onChange={handleChange} className="form-input" />
                     </div>
                     <div className="mb-4">
                         <label htmlFor="username" className="block text-gray-700">Usuario</label>

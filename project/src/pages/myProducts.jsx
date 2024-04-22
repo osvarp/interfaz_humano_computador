@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 function MyProducts( props ) {
     const allProducts = useSelector( (state) => state.product );
-    const myUser = useSelector( (state) => state.localUser.userName );
+    const myUser = useSelector( (state) => state.localUser.username );
     const myProductsId = useSelector( (state) => state.allUsers[myUser].associatedProducts );
     return(
     <>
