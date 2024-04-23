@@ -31,7 +31,7 @@ function CreateProduct(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const fullProduct = {...inputs, id : nextId, userName: myUser };
+        const fullProduct = {...inputs, id : nextId, username: myUser };
         dispatch( addProduct( fullProduct ) );
         dispatch( addAssociatedProduct( { user:myUser, product:nextId} ) );
 

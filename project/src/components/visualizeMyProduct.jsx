@@ -1,11 +1,23 @@
 import styles from "/src/styles/visualizeMyProduct.module.css";
+import { useDispatch } from "react-redux";
+import { changeStockState } from "../slice/productSlice";
+import { useState } from "react";
 
 function VisualizeMyProduct( props ) {
+    const dispatch = useDispatch();
+    const [stock, setStock] = useState( { value: props.product.inStock } );
+
+    const handleToggleStock = (event) => {
+        let tmp = !stock.value;
+        setStock( (state) => ({...state, value: tmp }) );
+        dispatch( changeStockState( { product: props.product.id, stock:tmp }) );
+    }
+    
     let stockButton;
-    if ( props.product.inStock ) {
-        stockButton = <button className={styles.activeProduct} > <h1> ACTIVO </h1> </button>
+    if ( stock.value ) {
+        stockButton = <button className={styles.activeProduct} onClick={handleToggleStock} > <h1> ACTIVO </h1> </button>
     } else {
-        stockButton = <button className={styles.inactiveProduct}> <h1> CERRADO </h1> </button>
+        stockButton = <button className={styles.inactiveProduct} onClick={handleToggleStock}> <h1> CERRADO </h1> </button>
     }
 
     return(

@@ -3,7 +3,7 @@ import styles from '/src/styles/productDisplay.module.css';
 import DisplayProduct from "/src/components/displayProduct.jsx";
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import GoBackButton from "../components/goBackButton";
-
+import EmptySequenceMessage from "../components/emptySequenceMessage";
 
 import { useSelector } from "react-redux";
 import ProfileImage from '../components/profileImage';
@@ -23,6 +23,7 @@ function Explore ( props ) {
             <input placeholder="Search" type="search" className={styles.input}/>
             </div>
             {/* */}
+            { Object.keys(productsInSale).length == 0 && <EmptySequenceMessage/> }
             <div className={styles.container}>
                 <div className={styles.centeredDiv}>
                     { Object.keys(productsInSale).map( (product) => <DisplayProduct key={productsInSale[product].id} product={productsInSale[product]}  /> ) }
