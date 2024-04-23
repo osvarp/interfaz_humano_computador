@@ -23,6 +23,13 @@
     align-items: center;
 }
 
+.buttonBox {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .productImage{
     max-width: 50%;
     max-height: 35%;
@@ -40,15 +47,20 @@
 .activeProduct {
     width: 80%;
     height: 50px;
-    rotate: 270deg;
     background-color: rgb(84, 185, 84);
     text-align: center;
+}
+
+.activeProduct:hover {
+    transform: scale(1.05);
 }
 
 .inactiveProduct {
     width: 80%;
     height: 50px;
-    rotate: 270deg;
     background-color: rgb(219, 13, 13);
     text-align: center;
+}
+.inactiveProduct:hover {
+    transform: scale(1.05);
 }

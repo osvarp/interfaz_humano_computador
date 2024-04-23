@@ -51,7 +51,9 @@ export const allUsersSlice = createSlice({
             state[action.payload.user].nextId += 1;
         },
         removeAssociatedProduct : ( state, action ) => {
-            const index = state[action.payload.user].associatedProducts.indexOf( action.product );
+            console.log(action.payload.product);
+            const index = state[action.payload.user].associatedProducts.indexOf( action.payload.product );
+            console.log( index );
             if ( index > -1 ) {
                 state[action.payload.user].associatedProducts.splice( index, 1 );
             }

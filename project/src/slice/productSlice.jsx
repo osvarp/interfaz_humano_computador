@@ -6,7 +6,6 @@ const initialState = {
         username: "asterion",
         productName: "brownie",
         price: 200,
-        profileImage: "/public/profileImages/asterion.jpg",
         productImage: "/public/productImages/asterion_brownie.png",
         productDescription: "Rico brownie para pasar la tarde",
         inStock: true,
@@ -16,7 +15,6 @@ const initialState = {
         username: "jeronimo",
         productName: "durazno",
         price: 8000,
-        profileImage: "/public/profileImages/jeronimo.jpg",
         productImage: "/public/productImages/jeronimo_durazno.png",
         productDescription: "Un durazno. Esta bueno.",
         inStock: true,
@@ -26,7 +24,6 @@ const initialState = {
         username: "doña_florinda",
         productName: "pato de hule",
         price: 4000,
-        profileImage: "/public/profileImages/dona_florinda.jpg",
         productImage: "/public/productImages/dona_florinda_patoDeHule.jpeg",
         productDescription: "Debugea como los dioses usando la renombrada técnica del ‘rubber duck’.",
         inStock: true,
@@ -45,9 +42,14 @@ export const productSlice = createSlice({
         },
         changeStockState : ( state, action ) => {
             state[action.payload.product].inStock = action.payload.stock;
+        },
+        modifyProductData : ( state, action ) => {
+            Object.keys( action.payload ).map( (key) => {
+                state[action.payload.id][key] = action.payload[key];
+            } );
         }
     },
 });
 
-export const { addProduct, removeProduct, changeStockState } = productSlice.actions;
+export const { addProduct, removeProduct, changeStockState, modifyProductData } = productSlice.actions;
 export default productSlice.reducer;

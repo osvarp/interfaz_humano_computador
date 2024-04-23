@@ -10,6 +10,7 @@ import MyProducts from "./pages/myProducts.jsx";
 import CreateProduct from "./pages/createProduct.jsx";
 import MenuAndFilters from "./pages/menuAndFilters.jsx";
 import EditProfile from "./pages/editProfile.jsx";
+import EditProduct from "./pages/editproduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "/CreateProduct",
     element: <CreateProduct />
+  },
+  {
+    path: "/EditProduct",
+    element: <EditProduct />
   },
   {
     path:"/Menu",
