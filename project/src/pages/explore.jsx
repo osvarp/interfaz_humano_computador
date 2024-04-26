@@ -1,39 +1,52 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import DisplayProduct from '/src/components/displayProduct.jsx';
+import GoBackButton from '/src/components/goBackButton';
+import EmptySequenceMessage from '/src/components/emptySequenceMessage';
+import ProfileImage from '/src/components/profileImage';
+import UCommerceIcon from '/src/components/UCommerceIcon';
 import styles from '/src/styles/productDisplay.module.css';
+import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
+function Explore(props) {
+  const productsInSale = useSelector((state) => state.product);
 
-import DisplayProduct from "/src/components/displayProduct.jsx";
-import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
-import GoBackButton from "../components/goBackButton";
-import EmptySequenceMessage from "../components/emptySequenceMessage";
+  return (
+    <>
+    <ProfileImage />
+    <div>
+        <MenuAndFilters />
+        <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt="U-Commerce icon" />        
+    </div>
 
-import { useSelector } from "react-redux";
-import ProfileImage from '../components/profileImage';
+{/* Buscador */}
+<div className="group flex items-center">
+  <svg className="w-6 h-6 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    {/* Icono de búsqueda */}
+  </svg>
+  <input placeholder="Search" type="search" className="focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow px-3 py-2 rounded-md border border-gray-300" />
+</div>
 
-function Explore ( props ) {
-    const productsInSale = useSelector( (state) => state.product ) ;
+      {/* Contenedor del grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        {/* Botón de retroceso */}
+        
+        {/* Mostrar mensaje si no hay productos */}
+        {Object.keys(productsInSale).length === 0 && <EmptySequenceMessage />}
 
-    return (
-        <>
-            <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt = "U-Commerce icon"></img>
-            <GoBackButton to ="/Menu"/>
-            <ProfileImage />
-            <br></br>
-            {/* Buscador */}
-            <div className={styles.group}>
-            <svg className={styles.icon} aria-hidden="true" viewBox="0 0 24 24"><g><path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path></g></svg>
-            <input placeholder="Search" type="search" className={styles.input}/>
-            </div>
-            {/* */}
-            { Object.keys(productsInSale).length == 0 && <EmptySequenceMessage/> }
-            <div className={styles.container}>
-                <div className={styles.centeredDiv}>
-                    { Object.keys(productsInSale).map( (product) => <DisplayProduct key={productsInSale[product].id} product={productsInSale[product]}  /> ) }
-                </div>
-            </div>
-            <br></br>
+        {/* Mostrar productos */}
+        {Object.keys(productsInSale).map((product) => (
+          <DisplayProduct
+            key={productsInSale[product].id}
+            product={productsInSale[product]}
+            className="bg-white rounded-lg shadow-lg" // Estilo de cada tarjeta de producto
+          />
+        ))}
+      </div>
 
-            <UCommerceIcon />
-        </>
-    )
+      {/* Icono de U-Commerce */}
+      <UCommerceIcon />
+    </>
+  );
 }
 
 export default Explore;

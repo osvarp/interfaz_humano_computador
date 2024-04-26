@@ -74,6 +74,7 @@ function Login(props) {
                         Register
                     </button>
                 </Link>
+               
                 {showConfirmation && (
                     <div className="mt-4 text-green-500">
                         <FiCheckCircle size={24} />

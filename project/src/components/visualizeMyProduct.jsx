@@ -23,6 +23,7 @@ function VisualizeMyProduct( props ) {
 
     return(
         <>
+        <div class={styles.card}>
         <div className={styles.productBox}>
             <img src={props.product.productImage} className={styles.productImage} />
             <div className={styles.textBox}>
@@ -44,6 +45,7 @@ function VisualizeMyProduct( props ) {
                  </button>
                 {stockButton}
             </div>
+        </div>
         </div>
         </>
     );

@@ -8,6 +8,7 @@ import { useState } from "react";
 import { removeAssociatedProduct } from "../slice/allUsersSlice";
 import { removeProduct } from "../slice/productSlice";
 import styles from "../styles/generalStyles.module.css"
+import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
 
 function EraseModal( props ) {
     const dispatch = useDispatch();
@@ -52,7 +53,7 @@ function MyProducts( props ) {
 
     return(
     <>
-    <GoBackButton to ="/Menu" />
+    <MenuAndFilters/>
     <ProfileImage />
 
     { eraseId && <EraseModal id={eraseId} productName={allProducts[eraseId].productName} onCancel={handleCloseModal}/> }
