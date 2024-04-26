@@ -26,7 +26,7 @@ function Login(props) {
             
             setShowConfirmation(true);
             setTimeout(() => {
-                navigate("/Menu");
+                navigate("/Explorar");
             }, 1500);
         } else {
             alert("Por favor, complete todos los campos obligatorios.");

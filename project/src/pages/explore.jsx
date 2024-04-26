@@ -42,7 +42,7 @@ function Explore(props) {
           />
         ))}
       </div>
-
+        <br></br>
       {/* Icono de U-Commerce */}
       <UCommerceIcon />
     </>
