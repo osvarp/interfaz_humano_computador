@@ -16,11 +16,11 @@ function MenuAndFilters(props) {
     };
 
     const handleExplore = (event) => {
-        navigate("/Explorar");
+        navigate("/Menu/Explorar");
     };
 
     const handleMyProducts = (event) => {
-        navigate("/MyProducts");
+        navigate("/Menu/MyProducts");
     };
 
     const toggleMenu = () => {

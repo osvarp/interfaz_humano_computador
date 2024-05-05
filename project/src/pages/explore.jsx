@@ -5,18 +5,12 @@ import GoBackButton from '/src/components/goBackButton';
 import EmptySequenceMessage from '/src/components/emptySequenceMessage';
 import ProfileImage from '/src/components/profileImage';
 import UCommerceIcon from '/src/components/UCommerceIcon';
-import styles from '/src/styles/productDisplay.module.css';
 import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
 function Explore(props) {
   const productsInSale = useSelector((state) => state.product);
 
   return (
     <>
-    <ProfileImage />
-    <div>
-        <MenuAndFilters />
-        <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt="U-Commerce icon" />        
-    </div>
 
 {/* Buscador */}
 <div className="group flex items-center">

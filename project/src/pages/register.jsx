@@ -25,7 +25,7 @@ function Register(props) {
         } else if ( inputs.username && inputs.phoneNumber && inputs.password ) {
             dispatch( addUser( inputs ) );
             dispatch( loginUser( inputs.username ) );
-            navigate("/Menu");
+            navigate("/Menu/Explorar");
         } else {
             alert("Por favor, complete todos los campos obligatorios.");
         }

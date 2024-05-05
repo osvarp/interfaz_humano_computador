@@ -8,7 +8,7 @@ import { store } from './slice/index.jsx';
 import ErrorPage from "./pages/errorPage.jsx";
 import MyProducts from "./pages/myProducts.jsx";
 import CreateProduct from "./pages/createProduct.jsx";
-import MenuAndFilters from "./components/menuAndFilters.jsx";
+import NavBar from "./pages/navBar.jsx";
 import EditProfile from "./pages/editProfile.jsx";
 import EditProduct from "./pages/editproduct.jsx";
 
@@ -23,14 +23,6 @@ const router = createBrowserRouter([
     element: <Register/>
   },
   {
-    path: "/Explorar",
-    element: <Explore/>
-  },
-  {
-    path : "/MyProducts",
-    element: <MyProducts />
-  },
-  {
     path: "/CreateProduct",
     element: <CreateProduct />
   },
@@ -40,7 +32,17 @@ const router = createBrowserRouter([
   },
   {
     path:"/Menu",
-    element: <MenuAndFilters />
+    element: <NavBar />,
+    children: [
+      {
+        path: "/Menu/Explorar",
+        element: <Explore/>
+      },
+      {
+        path : "/Menu/MyProducts",
+        element: <MyProducts />
+      },
+    ],
   },
   {
     path: "/EditProfile",

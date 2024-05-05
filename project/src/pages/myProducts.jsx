@@ -53,8 +53,6 @@ function MyProducts( props ) {
 
     return(
     <>
-    <MenuAndFilters/>
-    <ProfileImage />
 
     { eraseId && <EraseModal id={eraseId} productName={allProducts[eraseId].productName} onCancel={handleCloseModal}/> }
 
