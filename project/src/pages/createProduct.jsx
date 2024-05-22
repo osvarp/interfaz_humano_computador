@@ -7,19 +7,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addProduct } from '../slice/productSlice';
 import { addAssociatedProduct } from '../slice/allUsersSlice';
 
+import { db } from "../firebase.jsx";
+import { collection, addDoc, setDoc } from 'firebase/firestore';
+import { uploadBytes, getStorage, ref } from 'firebase/storage';
+
 function CreateProduct(props) {
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({productName:"",price:"",productDescription:"", productImage:"noProductImage.jpg",inStock:false});
-    const dispatch = useDispatch();
+    const [image,setImage] = useState("noProductImage.jpg");
+    //const dispatch = useDispatch();
     
     const myUser = useSelector( (state) => state.localUser.username );
-    const nextId = myUser + "_" + useSelector( (state) => state.allUsers[myUser].nextId );
+    //const nextId = myUser + "_" + useSelector( (state) => state.allUsers[myUser].nextId );
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         let finalValue;
         if ( name === "productImage" ) {
-            console.log(event.target.files);
+            setImage( event.target.files[0] );
             finalValue = URL.createObjectURL( event.target.files[0] );
         } else if( name === "inStock" ) {
             finalValue = !inputs.inStock;
@@ -29,13 +34,23 @@ function CreateProduct(props) {
         setInputs(values => ({ ...values, [name]: finalValue }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const fullProduct = {...inputs, id : nextId, username: myUser };
-        dispatch( addProduct( fullProduct ) );
-        dispatch( addAssociatedProduct( { user:myUser, product:nextId} ) );
+        const fullProduct = {...inputs, username: myUser, productImage:"noProductImage.jpg" };
+        
+        const productRef = collection( db, "Product" );
+        const docRef = await addDoc( productRef, fullProduct );
+        if ( image != "noProductImage.jpg") {
+            const imgRef = ref( getStorage(), 'productImage/' + docRef.id  );
+            uploadBytes( imgRef, image );
 
-        navigate("/MyProducts");
+            await setDoc( docRef, {productImage:docRef.id}, {merge:true} );
+        }
+
+        //dispatch( addProduct( fullProduct ) );
+        //dispatch( addAssociatedProduct( { user:myUser, product:nextId} ) );
+
+        navigate("/Menu/MyProducts");
     };
 
     return (

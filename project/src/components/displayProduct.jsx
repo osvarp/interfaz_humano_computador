@@ -1,8 +1,22 @@
 import styles from '/src/styles/productDisplay.module.css';
 import { useSelector } from "react-redux";
+import { useState } from 'react';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
+
 
 function DisplayProduct( { product } ) {
     const sellerUser = useSelector( (state) => state.allUsers[product.username] );
+    const [productImage, setProductImage] = useState( "../public/noProductImage.jpg" );
+
+    const getProductImage = async () => {
+        const imageRef = ref( getStorage(), "productImage/" + product.productImage )
+        getDownloadURL( imageRef ).then( (url) => {
+            setProductImage( url );
+        } );
+    }
+
+    getProductImage(); 
+
 
     // para prevenir que se renderizen productos que no estan a la venta
     if ( !product.inStock || !sellerUser.seller ) {
@@ -17,7 +31,7 @@ function DisplayProduct( { product } ) {
                 <h4 className={styles.productDisplayText}> {product.userName} </h4>
             </div>
             <div className={styles.card}>
-            <img src={product.productImage}></img>
+            <img src={productImage}></img>
             <div className={styles.card__content}>
                 <p className={styles.card__title}>{product.productName}</p>
                 <p className={styles.card__price}>Price: ${product.price}</p>

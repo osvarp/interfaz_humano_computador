@@ -1,17 +1,32 @@
 import styles from "/src/styles/visualizeMyProduct.module.css";
-import { useDispatch } from "react-redux";
-import { changeStockState } from "../slice/productSlice";
+//import { useDispatch } from "react-redux";
+//import { changeStockState } from "../slice/productSlice";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link} from 'react-router-dom'
+
+import { db } from "../firebase.jsx";
+import { setDoc, doc } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 function VisualizeMyProduct( props ) {
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
     const [stock, setStock] = useState( { value: props.product.inStock } );
+    const [productImage, setProductImage] = useState( "public/noProductImage.jpg" );
+
+    const imageRef = ref( getStorage(), 'productImage/' + props.product.productImage );
+    getDownloadURL( imageRef ).then( (url) => {
+        setProductImage( url );
+    })
+    
+    const sendNewStock = async (value) => {
+        await setDoc( doc( db, "Product", props.product.id ), { inStock : value }, {merge:true} );
+    }
 
     const handleToggleStock = (event) => {
         let tmp = !stock.value;
         setStock( (state) => ({...state, value: tmp }) );
-        dispatch( changeStockState( { product: props.product.id, stock:tmp }) );
+        sendNewStock( tmp );
+        //dispatch( changeStockState( { product: props.product.id, stock:tmp }) );
     }
     
     let stockButton;
@@ -25,7 +40,7 @@ function VisualizeMyProduct( props ) {
         <>
         <div class={styles.card}>
         <div className={styles.productBox}>
-            <img src={props.product.productImage} className={styles.productImage} />
+            <img src={productImage} className={styles.productImage} />
             <div className={styles.textBox}>
                 <h1 className={styles.productText}> {props.product.productName} </h1>
                 <h2 className={styles.productText}> {props.product.price} </h2>
