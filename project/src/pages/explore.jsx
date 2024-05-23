@@ -25,7 +25,9 @@ function Explore(props) {
     })
     setProductsInSale(res);
   }
-  getData();
+  if ( productsInSale.length == 0 ){
+    getData();
+  }
   const handleChange = ( event ) => {
     setInput( (prev) => event.target.value );
   }
@@ -50,11 +52,15 @@ function Explore(props) {
 
         {/* Mostrar productos */}
         {productsInSale.map((product) => (
+          <div>
+            {product.productName.includes(input) && 
           <DisplayProduct
             key={product.id}
             product={product}
             className="bg-white rounded-lg shadow-lg" // Estilo de cada tarjeta de producto
           />
+            }
+          </div>
         ))}
       </div>
         <br></br>

@@ -15,7 +15,16 @@ function EditProduct( props ) {
   //const dispatch = useDispatch();
 
   const [myProduct,setMyProduct] = useState( {} );
+  const [refresh,setRefresh] = useState( {userInput:true,dataBase:true} );
   const [productImageAddress, setProductImageAddress] = useState("");
+  const [image, setImage] = useState( "" );
+  const [inputs, setInputs] = useState({
+    productName : "",
+    price: "",
+    productImage : "noProductImage.jpg",
+    productDescription : "",
+});
+
 
   const cargarDatos = async () => {
     const productRef = doc( db, "Product", state );
@@ -23,20 +32,11 @@ function EditProduct( props ) {
 
     setProductImageAddress( snapshot.data().productImage );
     const imageRef = ref( getStorage(), 'productImage/' + snapshot.data().productImage );
-    getDownloadURL( imageRef ).then( (url) => {
+    await getDownloadURL( imageRef ).then( (url) => {
         setMyProduct( { ...snapshot.data(), productImage : url } );
     } )
+    setRefresh( {...refresh,dataBase:false} );
 }
-cargarDatos();
-
-const [inputs, setInputs] = useState({
-    productName : myProduct.productName,
-    price: myProduct.price,
-    productImage : myProduct.productImage,
-    productDescription : myProduct.productDescription,
-});
-
-const [image, setImage] = useState( "" );
 
   //const myProduct = useSelector( (storeState) => storeState.product[state] );
 
@@ -54,7 +54,6 @@ const handleChange = (event) => {
 
 const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("suasdf adsf as ");
     let newProductImage;
     if ( image ) {
         const delRef = ref( getStorage(), 'productImage/' + productImageAddress );
@@ -69,11 +68,12 @@ const handleSubmit = async (event) => {
 
     await setDoc( doc( db, "Product", state ), {...inputs, productImage:newProductImage }, { merge: true } );
     //dispatch( modifyProductData( {...inputs, id:state} ) );
-    setMyProduct({});
-    cargarDatos();
-    handleCancel();
+    setRefresh({dataBase:true,userInput:true});
 };
 const handleCancel = (event) => {
+    setRefresh( {...refresh,userInput:true} );
+}
+const restoreData = (event) => {
     setInputs(values => ({...values,
       productName : myProduct.productName,
       price: myProduct.price,
@@ -81,6 +81,14 @@ const handleCancel = (event) => {
       productDescription : myProduct.productDescription,
   }))
   setImage("");
+  setRefresh( { ...refresh, userInput:false } );
+}
+
+if ( refresh.dataBase ){
+    cargarDatos();
+}
+if ( !refresh.dataBase && refresh.userInput ){
+    restoreData();
 }
 
 return (
@@ -95,7 +103,7 @@ return (
                     <input type="text" name="productName" id="productName" value={inputs.productName} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="price" className="block text-gray-700">Apellido</label>
+                    <label htmlFor="price" className="block text-gray-700">Precio</label>
                     <input type="text" name="price" id="price" value={inputs.price} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="mb-4">

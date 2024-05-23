@@ -19,15 +19,15 @@ function EraseModal( props ) {
 
         //dispatch( removeAssociatedProduct( { user:myUser, product:props.id } ) );
         //dispatch( removeProduct( props.id ) );
-        await deleteDoc( doc( db, "Product", props.id ) );
-        props.onCancel();
+        await deleteDoc( doc( db, "Product", props.data.id ) );
+        props.onErase();
     }
 
     return(
         <div className={styles.modal_overlay} onClick={props.onCancel}>
             <div className={styles.modal} >
                 <h1 className="text-center">
-                    ¿Estas seguro que quieres borrar "{props.id}"?
+                    ¿Estas seguro que quieres borrar "{props.data.name}"?
                 </h1>
                 <div className="
                 flex justify-around
@@ -47,6 +47,8 @@ function MyProducts( props ) {
     //const myProductsId = useSelector( (state) => state.allUsers[myUser].associatedProducts );
     
     const [myProducts, setMyProducts] = useState([]);
+    const [refresh, setRefresh] = useState( true );
+    const [eraseInfo, setEraseInfo] = useState( {id:"",name:""} );
 
     const cargarDatos = async () => {
         const q = query( collection(db, "Product"), where("username","==",myUser));
@@ -56,29 +58,36 @@ function MyProducts( props ) {
             tmp.push( { ...doc.data(), id:doc.id } );
         })
         setMyProducts( tmp );
+        setRefresh( false );
     }
-    cargarDatos();
-
-    const [eraseId, setEraseId] = useState( "" );
 
     const handleEraseButton = (event) => () => {
-        setEraseId( (prevState) => event );
+        setEraseInfo( event );
     }
 
     const handleCloseModal = (event) => {
-        setEraseId( (prevState) => "" );
+        setEraseInfo( {id:"",name:""} );
+    }
+
+    const handleErase = (event) => {
+        handleCloseModal();
+        setRefresh(true);
+    }
+
+    if ( refresh ) {
+        cargarDatos();
     }
 
     return(
     <>
 
-    { eraseId && <EraseModal id={eraseId} onCancel={handleCloseModal}/> }
+    { eraseInfo.id && <EraseModal data={eraseInfo} onCancel={handleCloseModal} onErase={handleErase} /> }
     
     <h1 className=" 
     text-7xl text-red-500 font-semibold text-center my-10
     " > My Products </h1>
     { myProducts.length == 0 && <EmptySequenceMessage/> }
-    { myProducts.map( (item) => <VisualizeMyProduct key={item.id} product={ item } onEraseClick={handleEraseButton(item.id)} /> ) }
+    { myProducts.map( (item) => <VisualizeMyProduct key={item.id} product={ item } onEraseClick={handleEraseButton({id:item.id,name:item.productName})} /> ) }
 
     <div className="flex justify-center
     " >
