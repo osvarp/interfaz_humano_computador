@@ -6,11 +6,14 @@ import styles from "/src/styles/generalStyles.module.css";
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../slice/localUserSlice';
 
+import { db } from "../firebase.jsx";
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+
 function Login(props) {
     const navigate = useNavigate();
     const [input, setInputs] = useState({ username: "", password: "" });
     const [showConfirmation, setShowConfirmation] = useState(false);
-    const allUsers = useSelector( (state) => state.allUsers );
+    //const allUsers = useSelector( (state) => state.allUsers );
     const dispatch = useDispatch();
 
     const handleEvent = (event) => {
@@ -18,8 +21,15 @@ function Login(props) {
         setInputs((prevInputs) => ({ ...prevInputs, [name]: value }));
     };
 
-    const handleOnClick = () => {
-        if ( !(input.username in allUsers) ) {
+    const handleOnClick = async () => {
+        const q = query( collection( db, "Users" ), where( "username", "==", input.username ) );
+        const snapshot = await getDocs( q );
+        let repeated = false;
+        snapshot.forEach( () => {
+            repeated = true;
+        } )
+
+        if ( !repeated ) {
             alert( "el usuario '" + input.username + "' no existe." );
         } else if (input.username && input.password) {
             dispatch( loginUser( input.username ) )

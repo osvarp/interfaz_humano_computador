@@ -4,8 +4,8 @@ import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import GoBackButton from '../components/goBackButton';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addProduct } from '../slice/productSlice';
-import { addAssociatedProduct } from '../slice/allUsersSlice';
+//import { addProduct } from '../slice/productSlice';
+//import { addAssociatedProduct } from '../slice/allUsersSlice';
 
 import { db } from "../firebase.jsx";
 import { collection, addDoc, setDoc } from 'firebase/firestore';

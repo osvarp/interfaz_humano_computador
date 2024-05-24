@@ -4,26 +4,39 @@ import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import GoBackButton from '../components/goBackButton';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addUser } from '../slice/allUsersSlice';
+//import { addUser } from '../slice/allUsersSlice';
 import { loginUser } from '../slice/localUserSlice';
+
+import { db } from "../firebase.jsx";
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 
 function Register(props) {
     const navigate = useNavigate();
-    const [inputs, setInputs] = useState({username:"",phoneNumber:"",password:"",name:"",surname:"",seller:false});
+    const [inputs, setInputs] = useState({username:"",phoneNumber:"",password:"",name:"",surname:"",seller:false, profileImage:"defaultUserPicture.png",description:""});
     const dispatch = useDispatch();
-    const allUsers = useSelector( (state) => state.allUsers );
+    //const allUsers = useSelector( (state) => state.allUsers );
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setInputs(values => ({ ...values, [name]: value }));
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        if ( inputs.username in allUsers ) {
+
+        const q = query( collection( db, "Users" ), where( "username", "==", inputs.username ) );
+        const snapshot = await getDocs( q );
+        let repeated = false;
+        snapshot.forEach( () => {
+            repeated = true;
+        } )
+
+        if ( repeated ) {
             alert( "El nombre de usuario '" + inputs.username + "' ya ha sido seleccionado." );
         } else if ( inputs.username && inputs.phoneNumber && inputs.password ) {
-            dispatch( addUser( inputs ) );
+            //dispatch( addUser( inputs ) );
+            const docRef = await addDoc( collection(db,"Users"), inputs );
+
             dispatch( loginUser( inputs.username ) );
             navigate("/Menu/Explorar");
         } else {

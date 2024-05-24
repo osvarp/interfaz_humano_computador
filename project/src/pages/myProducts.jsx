@@ -3,8 +3,8 @@ import VisualizeMyProduct from "../components/visualizeMyProduct";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { removeAssociatedProduct } from "../slice/allUsersSlice";
-import { removeProduct } from "../slice/productSlice";
+//import { removeAssociatedProduct } from "../slice/allUsersSlice";
+//import { removeProduct } from "../slice/productSlice";
 import styles from "../styles/generalStyles.module.css"
 
 import { db } from "../firebase.jsx";

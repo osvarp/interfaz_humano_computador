@@ -52,10 +52,9 @@ function Explore(props) {
 
         {/* Mostrar productos */}
         {productsInSale.map((product) => (
-          <div>
-            {product.productName.includes(input) && 
+          <div key = {product.id}>
+            {(product.productName).includes(input) && 
           <DisplayProduct
-            key={product.id}
             product={product}
             className="bg-white rounded-lg shadow-lg" // Estilo de cada tarjeta de producto
           />

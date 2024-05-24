@@ -1,35 +1,73 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
 import GoBackButton from '../components/goBackButton';
 import '../styles/EditProfile.css'
 import { FiCheckCircle } from "react-icons/fi";
 import { useSelector, useDispatch } from 'react-redux';
-import { modifyUserData } from '../slice/allUsersSlice';
+//import { modifyUserData } from '../slice/allUsersSlice';
+
+import { db } from "../firebase.jsx";
+import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
+
 
 function EditProfile(props) {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     const myUser = useSelector( (state) => state.localUser.username );
-    const userData = useSelector( (state) => state.allUsers[myUser] );
+    const [userData,setUserData] = useState( {} );
+    const [refresh,setRefresh] = useState( {dataBase:true,syncInfo:true} );
+    //const userData = useSelector( (state) => state.allUsers[myUser] );
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [inputs, setInputs] = useState({
-        name : userData.name,
-        surname: userData.surname,
-        email : userData.email,
-        description : userData.description,
-        phoneNumber: userData.phoneNumber,
-        seller: userData.seller,
-        profileImage: userData.profileImage,
+        name : "",
+        surname: "",
+        email : "",
+        description : "",
+        phoneNumber: "",
+        seller: "",
+        profileImage: "",
     });
     const [isSaving, setIsSaving] = useState(false);
+    const [imageAddress,setImageAddress] = useState("");
+    const [imageLoaded,setImageLoaded] = useState("");
+
+    const loadData = async () => {
+        const q = query( collection( db, "Users" ), where( "username", "==", myUser ) );
+        const snapshot = await getDocs( q );
+
+        let tmp = {};
+        snapshot.forEach( (element) => {
+            tmp = { ...element.data(), id: element.id };
+        } )
+        setImageAddress( tmp.profileImage );
+        const imageRef = ref( getStorage(), 'userImage/' + tmp.profileImage );
+        await getDownloadURL( imageRef ).then( (url) => {
+            setUserData( { ...tmp, profileImage : url } );
+        } )
+        setRefresh( {...refresh,dataBase:false} );
+    }
+
+    const syncData = () => {
+        setInputs({
+            name : userData.name,
+            surname: userData.surname,
+            email : userData.email,
+            description : userData.description,
+            phoneNumber: userData.phoneNumber,
+            seller: userData.seller,
+            profileImage: userData.profileImage,
+        });
+        setImageLoaded( "" );
+        setRefresh( {...refresh,syncInfo:false} );
+    }
+
     const handleChange = (event) => {
         const { name, value } = event.target;
         let finalValue;
         if ( name === "profileImage" ) {
-            console.log(event.target.files);
             finalValue = URL.createObjectURL( event.target.files[0] );
+            setImageLoaded( event.target.files[0] );
         } else if( name === "seller" ) {
             finalValue = !inputs.seller;
         } else {
@@ -38,42 +76,57 @@ function EditProfile(props) {
         setInputs(values => ({ ...values, [name]: finalValue }));
     };
 
-    const handleSubmit = (event) => {
-        
-
-        dispatch( modifyUserData( {...inputs, username:myUser} ) );
-        event.preventDefault();
+    const animationTimer = (confirmation) => {
         setIsSaving(true);
     
         // Espera 3 segundos (3000 milisegundos) antes de ejecutar la siguiente línea
         setTimeout(async () => {
             setIsSaving(false);
-            setShowConfirmation(true)
+            if ( confirmation ){
+                setShowConfirmation(true)
+                setTimeout( async() => {
+                    setShowConfirmation( false );
+                }, 3000 );
+            }
 
         }, 3000);
+    }
+
+    const sendToDatabase = async () => {
+        let newImage;
+        if ( imageLoaded ) {
+            const delRef = ref( getStorage(), 'userImage/' + imageAddress );
+            deleteObject( delRef );
+
+            const imgRef = ref( getStorage(), 'userImage/' + userData.id  );
+            uploadBytes( imgRef, imageLoaded );
+            newImage = userData.id;
+        } else {
+            newImage = imageAddress;
+        }
+
+        await setDoc( doc( db, "Users", userData.id ), {...inputs, profileImage:newImage }, { merge: true } );
+        setRefresh( { dataBase:true, syncInfo:true } );
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        sendToDatabase();
+        animationTimer(true);
     };
 
-    const handleCancel =  (event) => {
-        setInputs(values => ({ ...values,
-            name : userData.name,
-            surname: userData.surname,
-            email : userData.email,
-            description : userData.description,
-            phoneNumber: userData.phoneNumber,
-            seller: userData.seller,
-            profileImage: userData.profileImage,
-        }))
-        
+    const handleCancel =  (event) => {        
         event.preventDefault();
-        setIsSaving(true);
-    
-        // Espera 3 segundos (3000 milisegundos) antes de ejecutar la siguiente línea
-        setTimeout(async () => {
-            setIsSaving(false);
-            setShowConfirmation(true)
-            
-        }, 3000);
-          
+        setRefresh( {...refresh, syncInfo:true} );
+
+        animationTimer(false);
+    }
+
+    if ( refresh.dataBase ) {
+        loadData();
+    }
+    if ( !refresh.dataBase && refresh.syncInfo ) {
+        syncData();
     }
 
     return (
