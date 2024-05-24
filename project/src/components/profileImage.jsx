@@ -9,7 +9,7 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 function ProfileImage( props ) {
     const myUser = useSelector( (state) => state.localUser.username );
     //const profileImage = useSelector( (state) => state.allUsers[myUser].profileImage );
-    const [profileImage,setProfileImage] = useState( "../public/defaultUserPicture.png" );
+    const [profileImage,setProfileImage] = useState( "/defaultUserPicture.png" );
     const [refresh, setRefresh] = useState( true );
     const navigate = useNavigate();
     

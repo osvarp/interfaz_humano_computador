@@ -30,7 +30,7 @@ function MenuAndFilters(props) {
     return (
         <div className="menu-container">
             <button onClick={toggleMenu}>
-                <img src="../../Hamburger_icon.svg.png" className="hamburger">
+                <img src="/Hamburger_icon.svg.png" className="hamburger">
                 </img>
             </button>
             {isMenuOpen && (

@@ -9,8 +9,8 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 function DisplayProduct( { product } ) {
     //const sellerUser = useSelector( (state) => state.allUsers[product.username] );
-    const [sellerUser, setSellerUser] = useState( { phoneNumber:"",profileImage:"../public/defaultUserPicture.png" } );
-    const [productImage, setProductImage] = useState( "../public/noProductImage.jpg" );
+    const [sellerUser, setSellerUser] = useState( { phoneNumber:"",profileImage:"/defaultUserPicture.png" } );
+    const [productImage, setProductImage] = useState( "/noProductImage.jpg" );
     const [refresh, setRefresh] = useState( true );
 
     const getImages = async () => {

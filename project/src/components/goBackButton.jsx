@@ -15,7 +15,7 @@ function GoBackButton( props ) {
     return (
         
         <button onClick={handleClick} >
-            <img src="/public/goBackImage.png" className="
+            <img src="/goBackImage.png" className="
   bg-inherit ml-3 mt-3 w-12 h-12 rounded-full float-left 
   hover:scale-105 hover:opacity-95 transition-transform duration-300
 " />

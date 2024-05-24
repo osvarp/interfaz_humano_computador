@@ -11,7 +11,7 @@ import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 function VisualizeMyProduct( props ) {
     //const dispatch = useDispatch();
     const [stock, setStock] = useState( { value: props.product.inStock } );
-    const [productImage, setProductImage] = useState( "public/noProductImage.jpg" );
+    const [productImage, setProductImage] = useState( "/noProductImage.jpg" );
 
     const imageRef = ref( getStorage(), 'productImage/' + props.product.productImage );
     getDownloadURL( imageRef ).then( (url) => {

@@ -1,5 +1,5 @@
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, BrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
 import Login from "./pages/login.jsx"
 import Register from "./pages/register.jsx";
 import Explore from "./pages/explore.jsx";
@@ -12,7 +12,7 @@ import NavBar from "./pages/navBar.jsx";
 import EditProfile from "./pages/editProfile.jsx";
 import EditProduct from "./pages/editproduct.jsx";
 
-const router = createBrowserRouter([
+/*const router = createBrowserRouter([
   {
     path: "/",
     element: <Login/>,
@@ -48,11 +48,34 @@ const router = createBrowserRouter([
     path: "/EditProfile",
     element: <EditProfile />
   }
-]);
+]);*/
 
 
 
 function App() {
+
+  return (
+    <>
+      <Provider store={store} >
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/Registro" element={<Register/>}/>
+        <Route path="/CreateProduct" element={<CreateProduct />} />
+        <Route path="/EditProfile" element={<EditProfile />} />
+        <Route path="/EditProduct" element={<EditProduct />}/>
+        <Route path="/Menu" element={<NavBar />}>
+          <Route path="/Menu/Explorar" element={<Explore/>} />
+          <Route path="/Menu/MyProducts" element={<MyProducts />} />
+        </Route>
+        <Route path="/*" element={<ErrorPage/>}/>
+      </Routes>
+      </BrowserRouter>
+      </Provider>
+
+    </>
+  )
 
   return (
     <>

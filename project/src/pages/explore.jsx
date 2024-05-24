@@ -19,6 +19,7 @@ function Explore(props) {
   const getData = async () => {
     const q = query( collection( db, "Product" ), where( "inStock", "==", true ) );
     const snapshot = await getDocs( q );
+
     const res = [];
     snapshot.forEach( (doc) => {
       res.push( { ...doc.data(), id: doc.id } );
