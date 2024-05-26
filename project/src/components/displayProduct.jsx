@@ -46,7 +46,7 @@ function DisplayProduct( { product } ) {
         <div className={styles.userInfo}>
             <div className = {styles.imageFlexBox} >
                 <img src={sellerUser.profileImage} className={styles.profileImage} />
-                <h4 className={styles.productDisplayText}> {product.userName} </h4>
+                <h4 className={styles.productDisplayText}> {product.username} </h4>
             </div>
             <div className={styles.card}>
             <img src={productImage}></img>

@@ -6,6 +6,7 @@ import { useState } from "react";
 //import { removeAssociatedProduct } from "../slice/allUsersSlice";
 //import { removeProduct } from "../slice/productSlice";
 import styles from "../styles/generalStyles.module.css"
+import NavBar from "./navBar.jsx";
 
 import { db } from "../firebase.jsx";
 import { collection, query, where, getDocs,deleteDoc, doc } from "firebase/firestore";
@@ -80,6 +81,7 @@ function MyProducts( props ) {
 
     return(
     <>
+    <NavBar/>
 
     { eraseInfo.id && <EraseModal data={eraseInfo} onCancel={handleCloseModal} onErase={handleErase} /> }
     

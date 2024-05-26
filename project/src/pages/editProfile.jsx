@@ -95,8 +95,11 @@ function EditProfile(props) {
     const sendToDatabase = async () => {
         let newImage;
         if ( imageLoaded ) {
-            const delRef = ref( getStorage(), 'userImage/' + imageAddress );
-            deleteObject( delRef );
+
+            if ( imageAddress === userData.id ) {
+                const delRef = ref( getStorage(), 'userImage/' + imageAddress );
+                deleteObject( delRef );
+            }
 
             const imgRef = ref( getStorage(), 'userImage/' + userData.id  );
             uploadBytes( imgRef, imageLoaded );

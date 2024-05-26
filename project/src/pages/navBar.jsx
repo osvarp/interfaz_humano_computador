@@ -11,7 +11,7 @@ function NavBar() {
         <div className=" flex flex-row
         ">
             <MenuAndFilters />
-            <img className={styles.smallIcon} src="Diseño sin título.svg" alt="U-Commerce icon" />        
+            <img className={styles.smallIcon} src="/Diseño sin título.svg" alt="U-Commerce icon" />        
             <ProfileImage />
 
         </div>

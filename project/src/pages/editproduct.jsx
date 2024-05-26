@@ -56,8 +56,11 @@ const handleSubmit = async (event) => {
     event.preventDefault();
     let newProductImage;
     if ( image ) {
-        const delRef = ref( getStorage(), 'productImage/' + productImageAddress );
-        deleteObject( delRef );
+
+        if ( productImageAddress === state ) {
+            const delRef = ref( getStorage(), 'productImage/' + productImageAddress );
+            deleteObject( delRef );
+        }
 
         const imgRef = ref( getStorage(), 'productImage/' + state  );
         uploadBytes( imgRef, image );

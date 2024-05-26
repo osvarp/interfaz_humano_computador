@@ -65,10 +65,9 @@ function App() {
         <Route path="/CreateProduct" element={<CreateProduct />} />
         <Route path="/EditProfile" element={<EditProfile />} />
         <Route path="/EditProduct" element={<EditProduct />}/>
-        <Route path="/Menu" element={<NavBar />}>
-          <Route path="/Menu/Explorar" element={<Explore/>} />
-          <Route path="/Menu/MyProducts" element={<MyProducts />} />
-        </Route>
+        <Route path="/Menu/Explorar" element={<Explore/>} />
+        <Route path="/Menu/MyProducts" element={<MyProducts />} />
+        
         <Route path="/*" element={<ErrorPage/>}/>
       </Routes>
       </BrowserRouter>

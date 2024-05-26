@@ -4,7 +4,7 @@ import DisplayProduct from '/src/components/displayProduct.jsx';
 import EmptySequenceMessage from '/src/components/emptySequenceMessage';
 import UCommerceIcon from '/src/components/UCommerceIcon';
 import { useState } from "react";
-
+import NavBar from './navBar.jsx';
 
 import { db } from "../firebase.jsx";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -35,7 +35,7 @@ function Explore(props) {
 
   return (
     <>
-
+    <NavBar/>
 {/* Buscador */}
 <div className="group flex items-center">
   <svg className="w-6 h-6 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
