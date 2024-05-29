@@ -2,27 +2,49 @@
 import { useLocation } from "react-router-dom";
 import GoBackButton from "../components/goBackButton";
 import UCommerceIcon from "/src/components/UCommerceIcon.jsx";
-import { useSelector, useDispatch } from "react-redux";
+//import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { modifyProductData } from "../slice/productSlice";
+//import { modifyProductData } from "../slice/productSlice";
+
+import { db } from "../firebase.jsx";
+import { setDoc, getDoc, doc } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
 
 function EditProduct( props ) {
   const { state } = useLocation(); //por algun motivo debe llamarse 'state'
-  const dispatch = useDispatch();
-  const myProduct = useSelector( (storeState) => storeState.product[state] );
+  //const dispatch = useDispatch();
 
+  const [myProduct,setMyProduct] = useState( {} );
+  const [refresh,setRefresh] = useState( {userInput:true,dataBase:true} );
+  const [productImageAddress, setProductImageAddress] = useState("");
+  const [image, setImage] = useState( "" );
   const [inputs, setInputs] = useState({
-    productName : myProduct.productName,
-    price: myProduct.price,
-    productImage : myProduct.productImage,
-    productDescription : myProduct.productDescription,
+    productName : "",
+    price: "",
+    productImage : "noProductImage.jpg",
+    productDescription : "",
 });
+
+
+  const cargarDatos = async () => {
+    const productRef = doc( db, "Product", state );
+    const snapshot = await getDoc( productRef );
+
+    setProductImageAddress( snapshot.data().productImage );
+    const imageRef = ref( getStorage(), 'productImage/' + snapshot.data().productImage );
+    await getDownloadURL( imageRef ).then( (url) => {
+        setMyProduct( { ...snapshot.data(), productImage : url } );
+    } )
+    setRefresh( {...refresh,dataBase:false} );
+}
+
+  //const myProduct = useSelector( (storeState) => storeState.product[state] );
 
 const handleChange = (event) => {
     const { name, value } = event.target;
     let finalValue;
     if ( name === "productImage" ) {
-        console.log(event.target.files);
+        setImage( event.target.files[0] );
         finalValue = URL.createObjectURL( event.target.files[0] );
     } else {
         finalValue = value;
@@ -30,18 +52,46 @@ const handleChange = (event) => {
     setInputs(values => ({ ...values, [name]: finalValue }));
 };
 
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch( modifyProductData( {...inputs, id:state} ) );
-};
+    let newProductImage;
+    if ( image ) {
 
+        if ( productImageAddress === state ) {
+            const delRef = ref( getStorage(), 'productImage/' + productImageAddress );
+            deleteObject( delRef );
+        }
+
+        const imgRef = ref( getStorage(), 'productImage/' + state  );
+        uploadBytes( imgRef, image );
+        newProductImage = state;
+    } else {
+        newProductImage = productImageAddress;
+    }
+
+    await setDoc( doc( db, "Product", state ), {...inputs, productImage:newProductImage }, { merge: true } );
+    //dispatch( modifyProductData( {...inputs, id:state} ) );
+    setRefresh({dataBase:true,userInput:true});
+};
 const handleCancel = (event) => {
+    setRefresh( {...refresh,userInput:true} );
+}
+const restoreData = (event) => {
     setInputs(values => ({...values,
       productName : myProduct.productName,
       price: myProduct.price,
       productImage : myProduct.productImage,
       productDescription : myProduct.productDescription,
   }))
+  setImage("");
+  setRefresh( { ...refresh, userInput:false } );
+}
+
+if ( refresh.dataBase ){
+    cargarDatos();
+}
+if ( !refresh.dataBase && refresh.userInput ){
+    restoreData();
 }
 
 return (
@@ -56,7 +106,7 @@ return (
                     <input type="text" name="productName" id="productName" value={inputs.productName} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="price" className="block text-gray-700">Apellido</label>
+                    <label htmlFor="price" className="block text-gray-700">Precio</label>
                     <input type="text" name="price" id="price" value={inputs.price} onChange={handleChange} className="form-input" />
                 </div>
                 <div className="mb-4">

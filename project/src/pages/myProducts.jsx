@@ -1,25 +1,32 @@
-import GoBackButton from "../components/goBackButton";
-import ProfileImage from "../components/profileImage";
 import EmptySequenceMessage from "../components/emptySequenceMessage";
 import VisualizeMyProduct from "../components/visualizeMyProduct";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { removeAssociatedProduct } from "../slice/allUsersSlice";
-import { removeProduct } from "../slice/productSlice";
+//import { removeAssociatedProduct } from "../slice/allUsersSlice";
+//import { removeProduct } from "../slice/productSlice";
 import styles from "../styles/generalStyles.module.css"
+<<<<<<< HEAD
 import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
 import Navbar from "../components/Navbar.jsx";
+=======
+import NavBar from "./navBar.jsx";
+
+import { db } from "../firebase.jsx";
+import { collection, query, where, getDocs,deleteDoc, doc } from "firebase/firestore";
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
 
 
 function EraseModal( props ) {
-    const dispatch = useDispatch();
-    const myUser = useSelector( (state) => state.localUser.username );
+    //const dispatch = useDispatch();
+    //const myUser = useSelector( (state) => state.localUser.username );
 
-    const handleErase = (event) => {
-        dispatch( removeAssociatedProduct( { user:myUser, product:props.id } ) );
-        dispatch( removeProduct( props.id ) );
-        props.onCancel();
+    const handleErase = async (event) => {
+
+        //dispatch( removeAssociatedProduct( { user:myUser, product:props.id } ) );
+        //dispatch( removeProduct( props.id ) );
+        await deleteDoc( doc( db, "Product", props.data.id ) );
+        props.onErase();
     }
 
     return(
@@ -27,7 +34,7 @@ function EraseModal( props ) {
             
             <div className={styles.modal} >
                 <h1 className="text-center">
-                    ¿Estas seguro que quieres borrar "{props.productName}"?
+                    ¿Estas seguro que quieres borrar "{props.data.name}"?
                 </h1>
                 <div className="
                 flex justify-around
@@ -41,31 +48,61 @@ function EraseModal( props ) {
 }
 
 function MyProducts( props ) {
-    const allProducts = useSelector( (state) => state.product );
+    //const allProducts = useSelector( (state) => state.product );
+
     const myUser = useSelector( (state) => state.localUser.username );
-    const myProductsId = useSelector( (state) => state.allUsers[myUser].associatedProducts );
-    const [eraseId, setEraseId] = useState( "" );
+    //const myProductsId = useSelector( (state) => state.allUsers[myUser].associatedProducts );
+    
+    const [myProducts, setMyProducts] = useState([]);
+    const [refresh, setRefresh] = useState( true );
+    const [eraseInfo, setEraseInfo] = useState( {id:"",name:""} );
+
+    const cargarDatos = async () => {
+        const q = query( collection(db, "Product"), where("username","==",myUser));
+        const snapshot = await getDocs( q );
+        const tmp = [];
+        snapshot.forEach( (doc) => {
+            tmp.push( { ...doc.data(), id:doc.id } );
+        })
+        setMyProducts( tmp );
+        setRefresh( false );
+    }
 
     const handleEraseButton = (event) => () => {
-        setEraseId( (prevState) => event );
+        setEraseInfo( event );
     }
 
     const handleCloseModal = (event) => {
-        setEraseId( (prevState) => "" );
+        setEraseInfo( {id:"",name:""} );
+    }
+
+    const handleErase = (event) => {
+        handleCloseModal();
+        setRefresh(true);
+    }
+
+    if ( refresh ) {
+        cargarDatos();
     }
 
     return(
     <>
+<<<<<<< HEAD
     <Navbar/>
 
     { eraseId && <EraseModal id={eraseId} productName={allProducts[eraseId].productName} onCancel={handleCloseModal}/> }
+=======
+    <NavBar/>
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
 
+    { eraseInfo.id && <EraseModal data={eraseInfo} onCancel={handleCloseModal} onErase={handleErase} /> }
+    
     <h1 className=" 
     text-7xl text-red-500 font-semibold text-center my-10
     " > My Products </h1>
-    { myProductsId.length == 0 && <EmptySequenceMessage/> }
-    { myProductsId.map( (productId) => <VisualizeMyProduct key={productId} product={allProducts[productId]} onEraseClick={handleEraseButton(productId)} /> ) }
-    
+    { myProducts.length == 0 && <EmptySequenceMessage/> }
+    { myProducts.map( (item) => <VisualizeMyProduct key={item.id} product={ item } onEraseClick={handleEraseButton({id:item.id,name:item.productName})} /> ) }
+
     <div className="flex justify-center
     " >
         <Link to="/CreateProduct">

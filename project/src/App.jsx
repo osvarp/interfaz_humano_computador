@@ -1,5 +1,5 @@
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, BrowserRouter, RouterProvider, Routes, Route } from "react-router-dom";
 import Login from "./pages/login.jsx"
 import Register from "./pages/register.jsx";
 import Explore from "./pages/explore.jsx";
@@ -8,12 +8,12 @@ import { store } from './slice/index.jsx';
 import ErrorPage from "./pages/errorPage.jsx";
 import MyProducts from "./pages/myProducts.jsx";
 import CreateProduct from "./pages/createProduct.jsx";
-import MenuAndFilters from "./components/menuAndFilters.jsx";
+import NavBar from "./pages/navBar.jsx";
 import EditProfile from "./pages/editProfile.jsx";
 import EditProduct from "./pages/editproduct.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const router = createBrowserRouter([
+/*const router = createBrowserRouter([
   {
     path: "/",
     element: <Login/>,
@@ -22,14 +22,6 @@ const router = createBrowserRouter([
   {
     path: "/Registro",
     element: <Register/>
-  },
-  {
-    path: "/Explorar",
-    element: <Explore/>
-  },
-  {
-    path : "/MyProducts",
-    element: <MyProducts />
   },
   {
     path: "/CreateProduct",
@@ -41,17 +33,49 @@ const router = createBrowserRouter([
   },
   {
     path:"/Menu",
-    element: <MenuAndFilters />
+    element: <NavBar />,
+    children: [
+      {
+        path: "/Menu/Explorar",
+        element: <Explore/>
+      },
+      {
+        path : "/Menu/MyProducts",
+        element: <MyProducts />
+      },
+    ],
   },
   {
     path: "/EditProfile",
     element: <EditProfile />
   }
-]);
+]);*/
 
 
 
 function App() {
+
+  return (
+    <>
+      <Provider store={store} >
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/Registro" element={<Register/>}/>
+        <Route path="/CreateProduct" element={<CreateProduct />} />
+        <Route path="/EditProfile" element={<EditProfile />} />
+        <Route path="/EditProduct" element={<EditProduct />}/>
+        <Route path="/Menu/Explorar" element={<Explore/>} />
+        <Route path="/Menu/MyProducts" element={<MyProducts />} />
+        
+        <Route path="/*" element={<ErrorPage/>}/>
+      </Routes>
+      </BrowserRouter>
+      </Provider>
+
+    </>
+  )
 
   return (
     <>
