@@ -3,10 +3,16 @@ import React from 'react';
 import DisplayProduct from '/src/components/displayProduct.jsx';
 import EmptySequenceMessage from '/src/components/emptySequenceMessage';
 import UCommerceIcon from '/src/components/UCommerceIcon';
+<<<<<<< HEAD
+import styles from '/src/styles/productDisplay.module.css';
+import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
+import Navbar from "/src/components/Navbar.jsx";
+=======
 import { useState } from "react";
 import NavBarr from '../components/Navbarr.jsx';
 import { db } from "../firebase.jsx";
 import { collection, query, where, getDocs } from "firebase/firestore";
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
 
 
 function Explore(props) {
@@ -34,7 +40,15 @@ function Explore(props) {
 
   return (
     <>
-    <NavBarr/>
+<<<<<<< HEAD
+    <Navbar/>
+    <div>
+        <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt="U-Commerce icon" />        
+    </div>
+
+=======
+    <NavBar/>
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
 {/* Buscador */}
 <div className="group flex items-center">
   <svg className="w-6 h-6 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

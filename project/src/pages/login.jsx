@@ -45,7 +45,11 @@ function Login(props) {
 
     return (
         <div className={styles.cont}>
+<<<<<<< HEAD
             <br></br>
+=======
+            <br/>
+>>>>>>> 9ac44bad9120e11f39d171e1fff6b0f7994d71a9
             <UCommerceIcon />
             <div className="-mt-10  flex flex-col items-center justify-center ">
                 <input

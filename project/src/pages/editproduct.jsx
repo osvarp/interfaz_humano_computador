@@ -115,7 +115,7 @@ return (
                 </div>
                 <div className="mb-4">
                     <label htmlFor="productImage" className="block text-gray-700"> 
-                        Foto de perfil
+                        Foto del producto
 
                         <input type="file" name="productImage" id="productImage" 
                         onChange={handleChange}

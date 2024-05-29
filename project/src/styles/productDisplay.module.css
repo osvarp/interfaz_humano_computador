@@ -32,7 +32,11 @@
 }
 .card {
   position: relative;
+<<<<<<< HEAD
   width: 100%;
+=======
+  max-width: 100%;
+>>>>>>> 9ac44bad9120e11f39d171e1fff6b0f7994d71a9
   height: auto;
   background-color: #f2f2f2;
   border-radius: 10px;

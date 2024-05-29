@@ -38,7 +38,11 @@ function Register(props) {
             const docRef = await addDoc( collection(db,"Users"), inputs );
 
             dispatch( loginUser( inputs.username ) );
+<<<<<<< HEAD
+            navigate("/Explorar");
+=======
             navigate("/Menu/Explorar");
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
         } else {
             alert("Por favor, complete todos los campos obligatorios.");
         }
@@ -46,7 +50,12 @@ function Register(props) {
 
     return (
         <>
+<<<<<<< HEAD
             <GoBackButton to="/" />
+=======
+        <br/>
+        <GoBackButton to="/" />
+>>>>>>> 9ac44bad9120e11f39d171e1fff6b0f7994d71a9
             <UCommerceIcon />
             
 

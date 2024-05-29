@@ -4,12 +4,17 @@ import GoBackButton from '../components/goBackButton';
 import '../styles/EditProfile.css'
 import { FiCheckCircle } from "react-icons/fi";
 import { useSelector, useDispatch } from 'react-redux';
+<<<<<<< HEAD
+import { modifyUserData } from '../slice/allUsersSlice';
+import Navbar from '../components/Navbar.jsx';
+=======
 //import { modifyUserData } from '../slice/allUsersSlice';
 
 import { db } from "../firebase.jsx";
 import { collection, query, where, getDocs, setDoc, doc } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
 
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
 
 function EditProfile(props) {
     //const dispatch = useDispatch();
@@ -134,7 +139,8 @@ function EditProfile(props) {
 
     return (
         <>
-            <GoBackButton />
+            <Navbar/>
+            <br/>
             <UCommerceIcon />
 
             <div className="mx-auto max-w-md mt-8 p-4 bg-white rounded shadow-md">

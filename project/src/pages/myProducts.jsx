@@ -6,10 +6,19 @@ import { useState } from "react";
 //import { removeAssociatedProduct } from "../slice/allUsersSlice";
 //import { removeProduct } from "../slice/productSlice";
 import styles from "../styles/generalStyles.module.css"
+<<<<<<< HEAD
 import NavBarr from '../components/Navbarr.jsx';
+=======
+<<<<<<< HEAD
+import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
+import Navbar from "../components/Navbar.jsx";
+=======
+import NavBar from "./navBar.jsx";
+>>>>>>> 9ac44bad9120e11f39d171e1fff6b0f7994d71a9
 
 import { db } from "../firebase.jsx";
 import { collection, query, where, getDocs,deleteDoc, doc } from "firebase/firestore";
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
 
 
 function EraseModal( props ) {
@@ -26,6 +35,7 @@ function EraseModal( props ) {
 
     return(
         <div className={styles.modal_overlay} onClick={props.onCancel}>
+            
             <div className={styles.modal} >
                 <h1 className="text-center">
                     ¿Estas seguro que quieres borrar "{props.data.name}"?
@@ -81,7 +91,17 @@ function MyProducts( props ) {
 
     return(
     <>
+<<<<<<< HEAD
     <NavBarr/>
+=======
+<<<<<<< HEAD
+    <Navbar/>
+
+    { eraseId && <EraseModal id={eraseId} productName={allProducts[eraseId].productName} onCancel={handleCloseModal}/> }
+=======
+    <NavBar/>
+>>>>>>> e5ee02b13060d4dfd7d366831f3d1a137c11d0e3
+>>>>>>> 9ac44bad9120e11f39d171e1fff6b0f7994d71a9
 
     { eraseInfo.id && <EraseModal data={eraseInfo} onCancel={handleCloseModal} onErase={handleErase} /> }
     

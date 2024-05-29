@@ -8,6 +8,7 @@ import { db } from "../firebase.jsx";
 import { setDoc, doc } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
+
 function VisualizeMyProduct( props ) {
     //const dispatch = useDispatch();
     const [stock, setStock] = useState( { value: props.product.inStock } );
