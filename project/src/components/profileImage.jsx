@@ -41,7 +41,7 @@ function ProfileImage( props ) {
         <button onClick={handleClick} className="
         float-right hover:scale-105 bg-inherit mr-3 mt-3
         ">
-            <img src = {profileImage} className="rounded-full w-32 h-32"/>
+            <img src = {profileImage} className="rounded-full w-14 h-14"/>
         </button>
         </>
     );

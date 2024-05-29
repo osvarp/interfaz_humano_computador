@@ -11,6 +11,7 @@ import CreateProduct from "./pages/createProduct.jsx";
 import NavBar from "./pages/navBar.jsx";
 import EditProfile from "./pages/editProfile.jsx";
 import EditProduct from "./pages/editproduct.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /*const router = createBrowserRouter([
   {

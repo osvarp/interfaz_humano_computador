@@ -46,8 +46,9 @@ function Register(props) {
 
     return (
         <>
-            <UCommerceIcon />
             <GoBackButton to="/" />
+            <UCommerceIcon />
+            
 
             <div className="mx-auto max-w-md mt-8 p-4 bg-white rounded shadow-md">
                 <form onSubmit={handleSubmit}>

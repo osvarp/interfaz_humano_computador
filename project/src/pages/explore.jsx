@@ -4,8 +4,7 @@ import DisplayProduct from '/src/components/displayProduct.jsx';
 import EmptySequenceMessage from '/src/components/emptySequenceMessage';
 import UCommerceIcon from '/src/components/UCommerceIcon';
 import { useState } from "react";
-import NavBar from './navBar.jsx';
-
+import NavBarr from '../components/Navbarr.jsx';
 import { db } from "../firebase.jsx";
 import { collection, query, where, getDocs } from "firebase/firestore";
 
@@ -35,7 +34,7 @@ function Explore(props) {
 
   return (
     <>
-    <NavBar/>
+    <NavBarr/>
 {/* Buscador */}
 <div className="group flex items-center">
   <svg className="w-6 h-6 mr-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,6 +64,7 @@ function Explore(props) {
       </div>
         <br></br>
       {/* Icono de U-Commerce */}
+      <br></br>
       <UCommerceIcon />
     </>
   );
