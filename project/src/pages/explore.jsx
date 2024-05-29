@@ -7,14 +7,16 @@ import ProfileImage from '/src/components/profileImage';
 import UCommerceIcon from '/src/components/UCommerceIcon';
 import styles from '/src/styles/productDisplay.module.css';
 import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
+import Navbar from "/src/components/Navbar.jsx";
+
+
 function Explore(props) {
   const productsInSale = useSelector((state) => state.product);
 
   return (
     <>
-    <ProfileImage />
+    <Navbar/>
     <div>
-        <MenuAndFilters />
         <img className={styles.smallIcon} src="/public/Diseño sin título.svg" alt="U-Commerce icon" />        
     </div>
 

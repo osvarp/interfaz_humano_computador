@@ -9,6 +9,8 @@ import { removeAssociatedProduct } from "../slice/allUsersSlice";
 import { removeProduct } from "../slice/productSlice";
 import styles from "../styles/generalStyles.module.css"
 import MenuAndFilters from  '/src/components/menuAndFilters.jsx';
+import Navbar from "../components/Navbar.jsx";
+
 
 function EraseModal( props ) {
     const dispatch = useDispatch();
@@ -22,6 +24,7 @@ function EraseModal( props ) {
 
     return(
         <div className={styles.modal_overlay} onClick={props.onCancel}>
+            
             <div className={styles.modal} >
                 <h1 className="text-center">
                     ¿Estas seguro que quieres borrar "{props.productName}"?
@@ -53,8 +56,7 @@ function MyProducts( props ) {
 
     return(
     <>
-    <MenuAndFilters/>
-    <ProfileImage />
+    <Navbar/>
 
     { eraseId && <EraseModal id={eraseId} productName={allProducts[eraseId].productName} onCancel={handleCloseModal}/> }
 

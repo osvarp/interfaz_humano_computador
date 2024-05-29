@@ -4,6 +4,7 @@ import { changeStockState } from "../slice/productSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
 function VisualizeMyProduct( props ) {
     const dispatch = useDispatch();
     const [stock, setStock] = useState( { value: props.product.inStock } );

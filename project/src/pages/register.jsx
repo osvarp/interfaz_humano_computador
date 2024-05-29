@@ -25,7 +25,7 @@ function Register(props) {
         } else if ( inputs.username && inputs.phoneNumber && inputs.password ) {
             dispatch( addUser( inputs ) );
             dispatch( loginUser( inputs.username ) );
-            navigate("/Menu");
+            navigate("/Explorar");
         } else {
             alert("Por favor, complete todos los campos obligatorios.");
         }
@@ -33,8 +33,10 @@ function Register(props) {
 
     return (
         <>
+        <br/>
+        <GoBackButton to="/" />
             <UCommerceIcon />
-            <GoBackButton to="/" />
+            
 
             <div className="mx-auto max-w-md mt-8 p-4 bg-white rounded shadow-md">
                 <form onSubmit={handleSubmit}>

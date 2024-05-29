@@ -6,6 +6,7 @@ import '../styles/EditProfile.css'
 import { FiCheckCircle } from "react-icons/fi";
 import { useSelector, useDispatch } from 'react-redux';
 import { modifyUserData } from '../slice/allUsersSlice';
+import Navbar from '../components/Navbar.jsx';
 
 function EditProfile(props) {
     const navigate = useNavigate();
@@ -78,7 +79,8 @@ function EditProfile(props) {
 
     return (
         <>
-            <GoBackButton />
+            <Navbar/>
+            <br/>
             <UCommerceIcon />
 
             <div className="mx-auto max-w-md mt-8 p-4 bg-white rounded shadow-md">
